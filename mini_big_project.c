@@ -2,6 +2,8 @@
 #include <windows.h>  // for get terminal size 
 
 //variable that NOT gonna change by player ( system variable )
+char version[] = "1.0.0";
+
 int w=0,a=0,s=0,d=0,m1=0; // user input flag
 
 long int tick = 0;
@@ -139,7 +141,7 @@ void update_game(){
 void display_var(){
 	printf("\e[1;1H\e[2J\e[1;1H\e[3J"); // clear screen & clear scroll up
 	printf("\e[%d;%dH",1,1); // set cursor position (y,x)
-	printf("[ terminal size : %d  %d ]",terminal_x,terminal_y);
+	printf("[ version %s terminal size : %d  %d ]",version,terminal_x,terminal_y);
 	printf("\e[%d;%dH",2,1); // set cursor position (y,x)
 	printf("[ game_time: %d  tick: %d  fps: %d ]",game_time,tick,fps);
 	printf("\e[%d;%dH",3,1); // set cursor position (y,x)
