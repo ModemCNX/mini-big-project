@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <windows.h>  // for get terminal size 
 
 //variable that NOT gonna change by player ( system variable )
 int w=0,a=0,s=0,d=0,m1=0; // user input flag
@@ -10,6 +11,7 @@ int fps = 0;
 int fps_time = 0; // for fps calculation
 int last_sec_tick = 0; // for fps calculation
 
+CONSOLE_SCREEN_BUFFER_INFO csbi; // for get terminal size 
 int terminal_x = 0; // store terminal size
 int terminal_y = 0;
 
@@ -18,11 +20,14 @@ int mouse_y = 0;
 int screen_size_x = 0;
 int screen_size_y = 0;
 
+int screen[160][40];
 
 //variable that gonna change ( game variable )
 int game_state = 0;
 int position[2] = {3,5};
 int position_last_frame[2];
+
+//struct 
 
 
 //function 
@@ -74,56 +79,10 @@ void print_full_screen(){
 	}
 }
 
-void update_terminal_size(){ // bruh
-    int data; // contain letter from printf("\e[6n"); (and user input)
-    int count=0,x=0,y=0;
-    int reach_x =0; // flag when data give ';' 
-    printf("\e[%d;%dH",10000,10000); // set cursor position (this willcap at terminal size)
-    printf("\e[6n"); // print cursor position need to getch() it (below)
-	while(1)
-	{
-		//printf("----------c = %d------------\n",count);      //for debug 
-		
-		if(count == -1){
-			//printf("[break %d] ",count);
-			break;
-		}
-		else{
-		
-			data = getch(); //get character 1 by 1
-			//printf("\n  [ %c  ][ascii %d]\n",data,data);         //for debug 
-			
-			if (data == ';'){
-				reach_x =1;
-			}else if (count > 1 && data != 'R'){
-				if (reach_x){
-					x = x*10 + (data-'0');
-					//printf(" [%d] ",x);    //for debug 
-				}else {
-					y = y*10 + (data-'0');
-					//printf(" [%d] ",y);        //for debug 
-				}
-			}
-			if (count > 0)count ++ ;// next character
-			if (data == 27){ // data befor ascii 27(cant use '?') is user input need to be ignore
-				count = 1;
-			}else if (data == 0){
-				count = -1;
-				printf("\e[%d;%dH",0,0); // set cursor position (y,x)
-				printf("[ERROR] did not use getch() befor use update_terminal_size()");  // error massage      pls use getch() at lease once befor use this function
-				
-			}
-			else if (data == 'R'){ // end
-				count = -1;
-				terminal_x = x;
-				terminal_y = y;
-			}
-		}
-	}
-}
 // start funtion
 
 void start_setup(){
+	printf("\e[?25l"); // hide cursor
 	start_time = time(NULL);
 	int screen_size[2];
 	screen_size_x = GetSystemMetrics(screen_size[3]);
@@ -131,6 +90,12 @@ void start_setup(){
 }
 
 // update function
+
+void update_terminal_size(){ // bruh
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+	terminal_x = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+	terminal_y = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+}
 
 void update_input(){
 	w = GetAsyncKeyState('W')!=0?1:0;
@@ -140,10 +105,10 @@ void update_input(){
 	m1 = GetAsyncKeyState(0x01)!=0?1:0;
 }
 void update_mouse_position_in_screen(){ // can be outside terminal tab
-	int mouse[2] ;
-	GetCursorPos(mouse);
-	mouse_x = mouse[0] +1; // mouse on top-left of screen is (0,0) so we need to offset by (1,1)
-	mouse_y = mouse[1] +1; // mouse on top-left of screen is (0,0) so we need to offset by (1,1)
+	POINT mouse ;
+	GetCursorPos(&mouse);
+	mouse_x = mouse.x +1; // mouse on top-left of screen is (0,0) so we need to offset by (1,1)
+	mouse_y = mouse.y +1; // mouse on top-left of screen is (0,0) so we need to offset by (1,1)
 }
 
 void update_game_tick(){
@@ -185,9 +150,6 @@ void display_var(){
 //main bruh
 void main(){
 	start_setup();
-	ShowCursor(0);
-	printf("press any key for [update_terminal_size()] to work");
-	getch(); // need to getch at start (or befor use update_terminal_size())  for check_terminal_size() to work without have to getch() every time you want to know size
 	printf("\e[1;1H\e[2J\e[1;1H\e[3J"); // clear screen & clear scroll up
 	while (1){ // game loop
 		update_game();
@@ -200,7 +162,6 @@ void main(){
 
 // note
 /*
-hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhg
 printf("\e[1;1H\e[2J"); // clear screen
 printf("\e[1;1H\e[2J\e[1;1H\e[3J"); // clear screen & clear scroll up
 printf("\e[%d;%dH",1,1); // set cursor position (y,x)
