@@ -195,6 +195,7 @@ void main(){
 
 // note
 /*
+      from modem's brance
 printf("\e[1;1H\e[2J"); // clear screen nnmnmnmnm
 printf("\e[1;1H\e[2J\e[1;1H\e[3J"); // clear screen & clear scroll up
 printf("\e[%d;%dH",1,1); // set cursor position (y,x)
