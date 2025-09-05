@@ -32,6 +32,76 @@ float position_y = 0;
 char map[30][1200];
 char player[10][10];
 
+// Message storage variables
+char stored_message[500] = "";
+
+// Type 2: Dialog messages array
+char dialog_messages[10][200];  // Store up to 10 messages
+int message_count = 0;
+
+// Type 3: Categorized messages
+char game_messages[50][100];    // Game messages
+char system_messages[20][150];  // System messages  
+char interaction_messages[30][200]; // Interaction messages
+
+// Type 4: Struct for messages with metadata
+typedef struct {
+    char content[300];
+    char category[50];
+    int is_used;
+    float timestamp;
+} GameMessage;
+
+GameMessage stored_game_messages[100];
+int total_messages = 0;
+
+// Functions for message management
+void store_simple_message(char* message) {
+    strcpy(stored_message, message);
+}
+
+void add_dialog_message(char* message) {
+    if (message_count < 10) {
+        strcpy(dialog_messages[message_count], message);
+        message_count++;
+    }
+}
+
+void store_categorized_message(char* message, char* category) {
+    if (total_messages < 100) {
+        strcpy(stored_game_messages[total_messages].content, message);
+        strcpy(stored_game_messages[total_messages].category, category);
+        stored_game_messages[total_messages].is_used = 0;
+        stored_game_messages[total_messages].timestamp = game_time;
+        total_messages++;
+    }
+}
+
+// Get stored messages
+char* get_stored_message() {
+    return stored_message;
+}
+
+char* get_dialog_message(int index) {
+    if (index < message_count) {
+        return dialog_messages[index];
+    }
+    return "";
+}
+
+void initialize_messages() {
+    // Store initial messages
+    store_simple_message("SYBAU");
+    
+    add_dialog_message("Hello there!");
+    add_dialog_message("How are you today?");
+    add_dialog_message("Nice weather, isn't it?");
+    
+    store_categorized_message("Player moved to new area", "movement");
+    store_categorized_message("System initialized", "system");
+    store_categorized_message("Ready for interaction", "interaction");
+}
+
 void make_sprite(){
 	strcpy(map[0]  , "[......................................................................................................................]");
 	strcpy(map[1]  , "[......................................................................................................................]");
@@ -63,17 +133,6 @@ void make_sprite(){
 	strcpy(map[27] , "[......................................................................................................................]");
 	strcpy(map[28] , "[......................................................................................................................]");
 	strcpy(map[29] , "[......................................................................................................................]");
-
-	strcpy(player[0] , "[-player-]");
-	strcpy(player[1] , "[--------]");
-	strcpy(player[2] , "[--0--0--]");
-	strcpy(player[3] , "[---vv---]");
-	strcpy(player[4] , "[--------]");
-	strcpy(player[5] , "[--------]");
-	strcpy(player[6] , "[--------]");
-	strcpy(player[7] , "[--------]");
-	strcpy(player[8] , "[--------]");
-	strcpy(player[9] , "[--------]");
 }
 
 // display function
@@ -89,15 +148,16 @@ void screen_draw(){
 }
 
 void add_screen_instruction_1(){
-	
+	// Example: use stored messages here
+	// strcat(screen_instruction_1, get_stored_message());
 }
 
 void add_screen_instruction_2(){
-	
+	// Example: use dialog messages here
+	// strcat(screen_instruction_2, get_dialog_message(0));
 }
 
 // game function
-
 void mode1_move(){
 	if (w) position_y-=mode1_move_speed*delta_time;
 	if (s) position_y+=mode1_move_speed*delta_time;
@@ -114,18 +174,16 @@ void physics_process(){
 	mode1_move();
 }
 
-
-// start funtion
-
+// start function
 void start_setup(){
 	printf("\e[?25l"); // hide cursor
 	make_sprite();
+	initialize_messages(); // FIXED: Add this line!
 	QueryPerformanceFrequency(&frequency);
 	QueryPerformanceCounter(&t1);
 }
 
 // update function
-
 void update_input(){
 	w = GetAsyncKeyState('W')!=0?1:0;
 	a = GetAsyncKeyState('A')!=0?1:0;
@@ -133,7 +191,6 @@ void update_input(){
 	d = GetAsyncKeyState('D')!=0?1:0;
 	m1 = GetAsyncKeyState(0x01)!=0?1:0;
 }
-
 
 void update_game_tick(){
 	tick ++;
@@ -177,11 +234,14 @@ void display_var(){
 	printf("[ game_time: %f delta_time: %f  tick: %d  fps: %f ]",game_time,delta_time,tick,fps);
 	printf("\e[%d;%dH",3,1); // set cursor position (y,x)
 	printf("[ position_x : %f position_y : %f ]",position_x,position_y);
-	//printf("\e[%d;%dH",4,1); // set cursor position (y,x)
-	//printf("[ input w %d  a %d  s %d  d %d  m1 %d ]",w,a,s,d,m1);
+	
+	// Example: Display stored message when needed
+	// printf("\e[%d;%dH",5,1);
+	// printf("[ Stored: %s ]", get_stored_message());
 }
-//main bruh
-void main(){
+
+//main function
+int main(){ // FIXED: Change void main() to int main()
 	start_setup();
 	screen_draw();
 	while (1){ // game loop
@@ -190,16 +250,15 @@ void main(){
 		physics_process();
 		//usleep(16666); // 60 fps but in reality lower fps
 	}
-	// end game
+	return 0; // FIXED: Add return statement
 }
 
 // note
 /*
 
       from modem's brance
-printf("\e[1;1H\e[2J"); // clear screen nnmnmnmnm like damn
+printf("\e[1;1H\e[2J"); // clear screen like damn
 printf("\e[1;1H\e[2J\e[1;1H\e[3J"); // clear screen & clear scroll up
 printf("\e[%d;%dH",1,1); // set cursor position (y,x)
 
 */
-
