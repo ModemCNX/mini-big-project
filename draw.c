@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 //variable that NOT gonna change by player ( system variable )
-char version[] = "1.0.0";
+char version[] = "1.0.1";
 
 int w=0,a=0,s=0,d=0,v=0,p=0,i=0,m1=0,shift=0,space=0,r=0,g=0,b=0,n0=0,n1=0,n2=0,n3=0,n4=0,n5=0,n6=0,n7=0,n8=0,n9=0; // user input flag
 
@@ -135,12 +135,13 @@ void move_mouse(){
 }
 
 void start_setup(){
-	printf("\e[?25l"); // hide cursor
-	QueryPerformanceFrequency(&frequency);
-	QueryPerformanceCounter(&t1);
-	int screen_size[2];
-	screen_size_x = GetSystemMetrics(screen_size[3]);
-	screen_size_y = GetSystemMetrics(screen_size[2]);
+    printf("\e[?25l"); // hide cursor
+    QueryPerformanceFrequency(&frequency);
+    QueryPerformanceCounter(&t1);
+    screen_size_x = GetSystemMetrics(SM_CXSCREEN);
+    screen_size_y = GetSystemMetrics(SM_CYSCREEN);
+    position_x = canvas_x / 2.0f;
+    position_y = canvas_y / 2.0f;
 }
 
 // update function
@@ -201,8 +202,8 @@ void update_fps(){  // fps of last frame
 void update_mouse_position_in_screen(){ // can be outside terminal tab
 	POINT mouse ;
 	GetCursorPos(&mouse);
-	mouse_x = mouse.x +1; // mouse on top-left of screen is (0,0) so we need to offset by (1,1)
 	mouse_y = mouse.y +1; // mouse on top-left of screen is (0,0) so we need to offset by (1,1)
+	mouse_x = mouse.x +1; // mouse on top-left of screen is (0,0) so we need to offset by (1,1)
 }
 
 void update_game(){
@@ -245,7 +246,7 @@ void set_screen_data(){
 		for(j=0;j<canvas_x;j++){
 			char pixel_data[10] = "";
 			strncpy(pixel_data , screen_data + index , 9);
-			index += 10;
+			index += 9;
 			screen[j][i] = 1000000000 + atoi(pixel_data);
 		}
 	}
@@ -258,10 +259,12 @@ void update_screen_data(){
 	for(i=0;i<canvas_y;i++){
 		for(j=0;j<canvas_x;j++){
 			char pixel_data[10] = "";
+			char save_data[10] = "";
 			if(screen[j][i]== 0)screen[j][i] = 1000000000;
-			itoa(screen[j][i],pixel_data, 10);
-			strncpy(pixel_data, pixel_data + 1, 9);
-			strcat(screen_data,pixel_data);
+			itoa(screen[j][i],pixel_data,10);
+			strncpy(save_data, pixel_data + 1, 9);
+			//if(!(i+j))printf("[%d]",strlen(save_data));
+			strcat(screen_data,save_data);
 		}
 	}
 	
@@ -343,10 +346,11 @@ void check_action(){
 
 
 menu(){
-	printf("<key>\n-hold R/Z press number to set Red\n-hold G/X press number to set Green\n-hold B/C press number to set Blue\n-hold Space Draw\n- V reset screen\n- I select color\n- P print data\n");
-	printf("If you want to load immage data paste number now \nIf you want to draw type anything that NOT A NUMBER!!!\n");
+	printf("version : %s\n",version);
+	printf("\n<key>\n-hold R/Z press number to set Red\n-hold G/X press number to set Green\n-hold B/C press number to set Blue\n-hold Space Draw\n- V reset screen\n- I select color\n- P print data\n");
+	printf("\nIf you want to load immage data paste number now \nIf you want to draw type anything that NOT A NUMBER!!!\n");
 	scanf("%s",&screen_data);
-	if(screen_data[0] > '0' && screen_data[0] < '9'){
+	if(screen_data[0] >= '0' && screen_data[0] <= '9'){
 		printf("\e[1;1H\e[2J\e[1;1H\e[3J"); // clear screen & clear scroll up
 		set_screen_data();
 		draw_screen();
