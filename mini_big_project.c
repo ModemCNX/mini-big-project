@@ -4,9 +4,9 @@
 #include <stdlib.h>
 
 //variable that NOT gonna change by player ( system variable )
-char version[] = "1.1.0";
+char version[] = "1.1.1";
 
-int w=0,a=0,s=0,d=0; // user input flag
+int w=0,a=0,s=0,d=0,space=0; // user input flag
 
 long int tick = 0;
 LARGE_INTEGER frequency; // for game_time calculation
@@ -14,10 +14,13 @@ LARGE_INTEGER t1, t2; // for game_time calculation
 float game_time = 0;
 float delta_time = 0;
 
-//variable that gonna change ( game variable )
-int game_state = 0; // 1 = VN    2 = combat
-int chapter = 0;
+float select_choice_time = 0; // for select_choice delay
 
+//variable that gonna change ( game variable )
+int game_state = 0; // 0 = loading state   1 = main menu   2 = VN    3 = combat
+int chapter = 0;
+int subchapter = 0;
+int select_choice = 1;
 
 //image data
 
@@ -59,28 +62,14 @@ void draw(char data[]){
 	}
 }
 
-// game function
-
-void physics_process(){
-	//for combat mode not imprement yet XD
-}
-
-
-// start funtion
-
-void start_setup(){
-	printf("\e[?25l"); // hide cursor
-	QueryPerformanceFrequency(&frequency); // for update_game_time(){
-	QueryPerformanceCounter(&t1);
-}
-
 // update function
 
 void update_input(){
-	w = GetAsyncKeyState('W')!=0?1:0;
-	a = GetAsyncKeyState('A')!=0?1:0;
-	s = GetAsyncKeyState('S')!=0?1:0;
-	d = GetAsyncKeyState('D')!=0?1:0;
+	w = GetAsyncKeyState('W')!=0||GetAsyncKeyState(0x26)!=0?1:0;
+	a = GetAsyncKeyState('A')!=0||GetAsyncKeyState(0x25)!=0?1:0;
+	s = GetAsyncKeyState('S')!=0||GetAsyncKeyState(0x28)!=0?1:0;
+	d = GetAsyncKeyState('D')!=0||GetAsyncKeyState(0x27)!=0?1:0;
+	space = GetAsyncKeyState(0x20)!=0?1:0;
 }
 
 
@@ -92,6 +81,24 @@ void update_game_time(){
 	QueryPerformanceCounter(&t2);
 	delta_time = ((t2.QuadPart - t1.QuadPart) / (float)frequency.QuadPart)  - game_time;
 	game_time = (t2.QuadPart - t1.QuadPart) / (float)frequency.QuadPart;
+}
+
+int update_select_choice(int choice_limit){    // return  if not change return 0 if change return old select_choice number
+	int select_choice_delay = 0.2;
+	if (w||a){
+		if(select_choice > 1 && game_time > select_choice_time + select_choice_delay){
+			select_choice_time = game_time;
+			select_choice -= 1;
+			return select_choice+1;
+		}
+	}else if (s||d){
+		if(select_choice < choice_limit && game_time > select_choice_time + select_choice_delay){
+			select_choice_time = game_time;
+			select_choice += 1;
+			return select_choice-1;
+		}
+	}
+	return 0;
 }
 
 void update_game(){
@@ -107,19 +114,87 @@ void display_var(){
 	printf("\e[%d;%dH",2,1); // set cursor position (y,x)
 	printf("[ game_time: %f delta_time: %f  tick: %d fps: %d ]",game_time,delta_time,tick,(int)(1/delta_time));
 	printf("\e[%d;%dH",3,1); // set cursor position (y,x)
-	printf("[ for debug:  ]",1);
+	printf("[ chapter : %d subchapter : %d ]",chapter,subchapter);
 	//printf("\e[%d;%dH",4,1); // set cursor position (y,x)
 	//printf("[ input w %d  a %d  s %d  d %d  m1 %d ]",w,a,s,d,m1);
 }
+
+// start funtion
+
+void start_setup(){
+	printf("\e[?25l"); // hide cursor
+	QueryPerformanceFrequency(&frequency); // for update_game_time(){
+	QueryPerformanceCounter(&t1);
+}
+
+// game function
+
+void clear_chapter_data(){
+	subchapter = 0;
+	select_choice = 1;
+	select_choice_time = 0;
+}
+
+void change_chapter(int target_chapter){
+	clear_chapter_data();
+	chapter = target_chapter;
+}
+
+void chapter_0(){
+	if (subchapter == 0){
+		subchapter = 1;
+		printf("\e[%d;%dH",14,10); // set cursor position (y,x)
+		printf("\e[3m\e[1mHello Welcome\e[0m");
+		printf("\e[%d;%dH",15,12); // set cursor position (y,x)
+		printf("\e[2m\e[1mstart\e[0m");
+		printf("\e[%d;%dH",16,12); // set cursor position (y,x)
+		printf("\e[2m\e[1mchapter teleport\e[0m");
+		printf("\e[%d;%dH",15,10); // set cursor position (y,x)
+		printf(">");
+	}
+	int old_choice = update_select_choice(2);
+	if (old_choice){
+		printf("\e[%d;%dH",14+old_choice,10); // set cursor position (y,x)
+		printf(" ");
+		printf("\e[%d;%dH",14+select_choice,10); // set cursor position (y,x)
+		printf(">");
+	}
+	if (space){
+		if (select_choice == 1){
+			change_chapter(1);
+		}
+	}
+	
+	
+	
+	
+}
+
+void chapter_1(){
+	if (subchapter == 0){
+		draw(test1);
+		draw(test2);
+		subchapter = 1;
+	}
+	if(a)draw(test1);
+	if(s)draw(test2);
+}
+
+void game_progress(){
+	if (chapter == 0){
+		chapter_0();
+	}else if (chapter == 1){
+		chapter_1();
+	}
+}
+
 //main bruh
 void main(){
 	start_setup();
-	draw(test1);
 	while (1){ // game loop
 		update_game();
 		display_var();
-		if(a)draw(test1);
-		if(s)draw(test2);
+		game_progress();
 	}
 	// end game
 }
@@ -129,5 +204,6 @@ void main(){
 printf("\e[1;1H\e[2J"); // clear screen
 printf("\e[1;1H\e[2J\e[1;1H\e[3J"); // clear screen & clear scroll up
 printf("\e[%d;%dH",1,1); // set cursor position (y,x)
+printf("\e[48;2;%d;%d;%dm ",0,0,0);// change color of ' ' to r:g:b value
 */
 
