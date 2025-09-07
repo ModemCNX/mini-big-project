@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 //variable that NOT gonna change by player ( system variable )
-char version[] = "1.0.1";
+char version[] = "1.0.2";
 
 int w=0,a=0,s=0,d=0,v=0,p=0,i=0,m1=0,shift=0,space=0,r=0,g=0,b=0,n0=0,n1=0,n2=0,n3=0,n4=0,n5=0,n6=0,n7=0,n8=0,n9=0; // user input flag
 
@@ -46,6 +46,7 @@ int current_g = 0;
 int current_b = 0;
 
 int pause = 0;
+int error = 0;
 //sprite
 int screen[120][30];
 char screen_data[360000] = "";
@@ -239,8 +240,16 @@ void show_current_rgb(){
 }
 
 void set_screen_data(){
-	int index = 0;
-	
+	int index = 1;
+	if (screen_data[0] == '1'){
+		canvas_x = 120;
+		canvas_y = 30;
+	}else if(screen_data[0] == '2'){
+		canvas_x = 89;
+		canvas_y = 28;
+	}else{
+		error = 1;
+	}
 	int i,j;
 	for(i=0;i<canvas_y;i++){
 		for(j=0;j<canvas_x;j++){
@@ -254,7 +263,13 @@ void set_screen_data(){
 }
 
 void update_screen_data(){
-	strcpy(screen_data,"");
+	if (canvas_x == 120 && canvas_y == 30){
+		strcpy(screen_data,"1");
+	}else if(canvas_x == 89 && canvas_y == 28){
+		strcpy(screen_data,"2");
+	}else{
+		strcpy(screen_data,"0");
+	}
 	int i,j;
 	for(i=0;i<canvas_y;i++){
 		for(j=0;j<canvas_x;j++){
@@ -354,6 +369,21 @@ menu(){
 		printf("\e[1;1H\e[2J\e[1;1H\e[3J"); // clear screen & clear scroll up
 		set_screen_data();
 		draw_screen();
+	}else{
+		printf("\nEnter Mode number for canvas\n- [1] Full screen canvas(120 x 30)\n- [2] VN picture canvas(89 x 28)\n");
+		int num=0;
+		while(!(num==1 || num ==2)){
+			scanf("%d",&num);
+			printf("Selected Mode [%d]\n",num);
+		}
+		if(num == 1){
+			canvas_x = 120;
+			canvas_y = 30;
+		}
+		if(num == 2){
+			canvas_x = 89;
+			canvas_y = 28;
+		}
 	}
 }
 
@@ -364,6 +394,11 @@ void main(){
 	draw_screen();
 	while (1){ // game loop
 		update_game();
+		if(error){
+			printf("ERROR PLS TELL MODEM ERROR CODE : %d",error);
+			return;
+		}
+		
 		if(!pause){
 			move_mouse();
 		}
