@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 //variable that NOT gonna change by player ( system variable )
-char version[] = "1.1.1";
+char version[] = "1.1.2";
 
 int w=0,a=0,s=0,d=0,space=0; // user input flag
 
@@ -31,6 +31,8 @@ char test2[] = "2150150150150150150150150150150150150150150150150150150150150150
 
 // display function
 void draw(char data[]){
+	char draw_action[100000] = "";
+	char text[100] = "";
 	int draw_x = 0 , draw_y = 0 , draw_start_x = 1 , draw_start_y = 1;
 	if(data[0] == '1'){ // draw full screen
 		draw_x = 120;
@@ -47,7 +49,9 @@ void draw(char data[]){
 	int index = 1;
 	int i,j;
 	for(i=0;i<draw_y;i++){
-		printf("\e[%d;%dH",draw_start_y + i,draw_start_x); // set cursor position (y,x)
+		//printf("\e[%d;%dH",draw_start_y + i,draw_start_x); // set cursor position (y,x)
+		sprintf(text,"\e[%d;%dH",draw_start_y + i,draw_start_x);
+		strcat(draw_action,text);
 		for(j=0;j<draw_x;j++){
 			char pixel_data[9] = "";
 			int data_rgb,data_r,data_g,data_b;
@@ -57,9 +61,13 @@ void draw(char data[]){
 			data_b = data_rgb % 1000;
 			data_g = (data_rgb/1000) % 1000;
 			data_r = (data_rgb/1000000) % 1000;
-			printf("\e[48;2;%d;%d;%dm ",data_r,data_g,data_b);// change color of ' ' to r:g:b value	
+			//printf("\e[48;2;%d;%d;%dm ",data_r,data_g,data_b);// change color of ' ' to r:g:b value	
+			sprintf(text,"\e[48;2;%d;%d;%dm ",data_r,data_g,data_b);
+			strcat(draw_action,text);
 		}
 	}
+	
+	printf("%s",draw_action);
 }
 
 // update function
@@ -164,10 +172,6 @@ void chapter_0(){
 			change_chapter(1);
 		}
 	}
-	
-	
-	
-	
 }
 
 void chapter_1(){
