@@ -222,7 +222,7 @@ int check_select_choice(int choice_limit){    // return : if not change return 0
 }
 
 int check_space(){    // return : 1 if space press    0 if space not press ( or on cooldown )
-	float space_delay = 0.5;
+	float space_delay = 0.3;
 	if (space){
 		if(game_time > space_time){
 			space_time = game_time + space_delay;
