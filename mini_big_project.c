@@ -5,7 +5,7 @@
 #include <math.h>
 
 //variable that NOT gonna change by player ( system variable )
-char version[] = "1.1.4.1";
+char version[] = "1.2.0";
 
 int w=0,a=0,s=0,d=0,space=0; // user input flag
 
@@ -520,7 +520,7 @@ void combat_progress(){
 	update_enemy();
 	move();
 	
-	if(current_fight == 1){  // villager
+	if(current_fight == 1){  // villager force lose
 		if(combat_counter == 1 && combat_time >= 2){
 			combat_counter ++;
 			int i;
@@ -602,7 +602,70 @@ void combat_progress(){
 			hp = 0;
 			take_damage();
 		}
-	}else if(current_fight == 2){  // bear
+	}else if(current_fight == 2){  // villager can win
+		if(combat_counter == 1 && combat_time >= 2){
+			combat_counter ++;
+			int i;
+			for(i=0;i<6;i++){
+				spawn(10,88,8+i,0,0,-10,0,0);
+			}
+		}else if(combat_counter == 2 && combat_time >= 3){
+			combat_counter ++;
+			int i;
+			for(i=0;i<6;i++){
+				spawn(10,0,14+i,0,0,10,0,0);
+			}
+		}else if(combat_counter == 3 && combat_time >= 6){
+			combat_counter ++;
+			int i;
+			for(i=0;i<18;i++){     //  5 sec down
+				spawn(15,26+i,0,0,7,0,-1.3,0);
+				spawn(15,45+i,0,0,7,0,-1.3,0);
+				spawn(15,26+i,-10,0,7,0,-1.3,0);
+				spawn(15,45+i,-10,0,7,0,-1.3,0);
+			}
+			for(i=0;i<9;i++){     //  5 sec down
+				spawn(15,26,-1-i,0,7,0,-1.3,0);
+				spawn(15,43,-1-i,0,7,0,-1.3,0);
+				spawn(15,45,-1-i,0,7,0,-1.3,0);
+				spawn(15,62,-1-i,0,7,0,-1.3,0);
+			}
+			
+		}else if(combat_counter == 4 && combat_time >= 17){
+			combat_counter ++;
+			int i;
+			for(i=0;i<18;i++){     //  5 sec down
+				spawn(5,26+i,0,0,7,0,-1.3,0);
+				spawn(5,45+i,0,0,7,0,-1.3,0);
+				spawn(5,26+i,-10,0,7,0,-1.3,0);
+				spawn(5,45+i,-10,0,7,0,-1.3,0);
+			}
+			for(i=0;i<9;i++){     //  5 sec down
+				spawn(5,26,-1-i,0,7,0,-1.3,0);
+				spawn(5,43,-1-i,0,7,0,-1.3,0);
+				spawn(5,45,-1-i,0,7,0,-1.3,0);
+				spawn(5,62,-1-i,0,7,0,-1.3,0);
+			}
+		}else if(combat_counter == 5 && combat_time >= 22){
+			combat_counter ++;
+			int i;
+			for(i=0;i<18;i++){     //  5 sec down
+				spawn(15,26+i,9,-2,0,-3,0,0);
+				spawn(15,45+i,9,2,0,3,0,0);
+				spawn(15,26+i,19,-2,0,-3,0,0);
+				spawn(15,45+i,19,2,0,3,0,0);
+			}
+			for(i=0;i<9;i++){     //  5 sec down
+				spawn(15,26,10+i,-2,0,-3,0,0);
+				spawn(15,43,10+i,-2,0,-3,0,0);
+				spawn(15,45,10+i,2,0,3,0,0);
+				spawn(15,62,10+i,2,0,3,0,0);
+			}
+		}else if(combat_counter == 6 && combat_time >= 28){
+			combat_counter ++;
+			win();
+		}
+	}else if(current_fight == 3){  // bear
 		if(combat_counter == 1 && combat_time >= 1){
 			combat_counter ++;
 			int i;
@@ -727,7 +790,7 @@ void combat_progress(){
 			combat_counter ++;
 			win();
 		}
-	}else if(current_fight == 3){  // GOON
+	}else if(current_fight == 4){  // GOON
 		if(combat_counter == 1 && combat_time >= 1){  // follow
 			combat_counter ++;
 			spawn(10,86,8,0,0,0,0,5); 
@@ -826,7 +889,7 @@ void combat_progress(){
 			win();
 		}
 		
-	}else if(current_fight == 4){  // vamp
+	}else if(current_fight == 5){  // vamp
 		if(combat_counter == 1 && combat_time >= 1){  
 			combat_counter ++;
 			int i;
@@ -1073,7 +1136,7 @@ void chapter_1(){
 			if(select_choice == 1){
 				subchapter = 4;
 				clear_text();
-				start_fight(2);    // enter combat mode
+				start_fight(5);    // enter combat mode
 			}else if(select_choice == 2){
 				subchapter = 5;
 				show_text(0);
