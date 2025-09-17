@@ -11,7 +11,6 @@ int w=0,a=0,s=0,d=0,space=0; // user input flag
 
 float eee=0; // for debug
 
-long int tick = 0;
 LARGE_INTEGER frequency; // for game_time calculation
 LARGE_INTEGER t1, t2; // for game_time calculation
 float game_time = 0;
@@ -219,14 +218,11 @@ void update_input(){
 	space = GetAsyncKeyState(0x20)!=0?1:0;
 }
 
-void update_game_tick(){
-	tick ++;
-}
 
-void update_game_time(){
+void update_game_time(float *game_time){
 	QueryPerformanceCounter(&t2);
-	delta_time = ((t2.QuadPart - t1.QuadPart) / (float)frequency.QuadPart)  - game_time;
-	game_time = (t2.QuadPart - t1.QuadPart) / (float)frequency.QuadPart;
+	delta_time = ((t2.QuadPart - t1.QuadPart) / (float)frequency.QuadPart)  - *game_time;
+	*game_time = (t2.QuadPart - t1.QuadPart) / (float)frequency.QuadPart;
 }
 
 // function for check input ( not call every frame, need to call by code )
@@ -265,10 +261,8 @@ int check_space(){    // return : 1 if space press    0 if space not press ( or 
 }
 
 void update_game(){
-	update_game_tick();
-	update_game_time();
+	update_game_time(&game_time);
 	update_input();
-	
 	draw_text();  // text system
 }
 
@@ -277,7 +271,7 @@ void display_var(){              // for debug only
 	printf("\e[48;2;0;0;0m");// change color of '' to r:g:b value	
 	printf("\e[%d;%dH",1,1); // set cursor position (y,x)
 	printf("[ version %s]",version);
-	printf("[ game_time: %f delta_time: %f  tick: %d fps: %d ]",game_time,delta_time,tick,(int)(1/delta_time));
+	printf("[ game_time: %f delta_time: %f fps: %d ]",game_time,delta_time,(int)(1/delta_time));
 	printf("\e[%d;%dH",2,92); // set cursor position (y,x)
 	printf("[chapter:%d subchapter:%d ]",chapter,subchapter);
 	printf("\e[%d;%dH",3,92); // set cursor position (y,x)
