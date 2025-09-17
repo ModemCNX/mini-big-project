@@ -5,7 +5,7 @@
 #include <math.h>
 
 //variable that NOT gonna change by player ( system variable )
-char version[] = "1.2.0";
+char version[] = "1.2.1";
 
 int w=0,a=0,s=0,d=0,space=0; // user input flag
 
@@ -520,7 +520,7 @@ void combat_progress(){
 	update_enemy();
 	move();
 	
-	if(current_fight == 1){  // villager force lose
+	if(current_fight == 1){  // villager force lose   < 40 sec
 		if(combat_counter == 1 && combat_time >= 2){
 			combat_counter ++;
 			int i;
@@ -602,7 +602,7 @@ void combat_progress(){
 			hp = 0;
 			take_damage();
 		}
-	}else if(current_fight == 2){  // villager can win
+	}else if(current_fight == 2){  // villager can win 28 sec
 		if(combat_counter == 1 && combat_time >= 2){
 			combat_counter ++;
 			int i;
@@ -665,7 +665,7 @@ void combat_progress(){
 			combat_counter ++;
 			win();
 		}
-	}else if(current_fight == 3){  // bear
+	}else if(current_fight == 3){  // bear  28 sec
 		if(combat_counter == 1 && combat_time >= 1){
 			combat_counter ++;
 			int i;
@@ -790,7 +790,7 @@ void combat_progress(){
 			combat_counter ++;
 			win();
 		}
-	}else if(current_fight == 4){  // GOON
+	}else if(current_fight == 4){  // GOON   52 sec
 		if(combat_counter == 1 && combat_time >= 1){  // follow
 			combat_counter ++;
 			spawn(10,86,8,0,0,0,0,5); 
@@ -889,8 +889,8 @@ void combat_progress(){
 			win();
 		}
 		
-	}else if(current_fight == 5){  // vamp
-		if(combat_counter == 1 && combat_time >= 1){  
+	}else if(current_fight == 5){  // vamp   60 sec
+	if(combat_counter == 1 && combat_time >= 1){  
 			combat_counter ++;
 			int i;
 			for(i=0;i<12;i++){   
@@ -1064,10 +1064,30 @@ void combat_progress(){
 					spawn(0.55,63+j,13+i,30,0,-250,0,0);
 				}
 			}
-		}else if(combat_counter == 19 && combat_time >= 55){ 
+		}else if(combat_counter == 19 && combat_time >= 51.75){   // wait & expand
+			combat_counter ++;
+			int i,j;
+			for(i=0;i<2;i++){
+				for(j=0;j<2;j++){
+					spawn(2.5,43+j,13+i,0,0,0,0,0);
+					spawn(2.5,44+j,13+i,0,0,0,0,0);
+				}
+			}
+		}else if(combat_counter == 20 && combat_time >= 54.25){ 
+			combat_counter ++;
+			int i,j;
+			for(i=0;i<12;i++){
+				spawn(0.5,43,13+i/6,35,-10+i*1.8,0,0,0);
+				spawn(0.5,45,13+i/6,-35,-10+i*1.8,0,0,0);
+			}
+			for(i=0;i<31;i++){
+				spawn(0.5,43+i/16.5,13,-30+i*2,-11,0,0,0);
+				spawn(0.5,43+i/16.5,14,-30+i*2,11,0,0,0);
+			}
+		}else if(combat_counter == 21 && combat_time >= 60){ 
 			combat_counter ++;
 			win();
-		}  // WIN
+		}
 	}
 }
 
