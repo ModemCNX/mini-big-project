@@ -5,7 +5,7 @@
 #include <math.h>
 
 //variable that NOT gonna change by player ( system variable )
-char version[] = "1.2.1";
+char version[] = "1.2.2";
 
 int w=0,a=0,s=0,d=0,space=0; // user input flag
 
@@ -894,9 +894,9 @@ void combat_progress(){
 			combat_counter ++;
 			int i;
 			for(i=0;i<12;i++){   
-				spawn(5.5,88,8+i,-25.8,0,5,0,0);
+				spawn(5.4,88,8+i,-25.8,0,5,0,0);
 			}	
-		}else if(combat_counter == 2 && combat_time >= 6.5){ 
+		}else if(combat_counter == 2 && combat_time >= 6.4){ 
 			combat_counter ++;
 			int i;
 			for(i=0;i<12;i++){   
