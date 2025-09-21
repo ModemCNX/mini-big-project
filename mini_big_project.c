@@ -5,7 +5,7 @@
 #include <math.h>
 
 //variable that NOT gonna change by player ( system variable )
-char version[] = "1.2.2";
+char version[] = "1.2.3";
 
 int w=0,a=0,s=0,d=0,space=0; // user input flag
 
