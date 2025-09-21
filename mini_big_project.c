@@ -373,7 +373,11 @@ void start_fight(int fight_index){
 	current_fight = fight_index;
 	combat_time = 0;
 	combat_counter = 1;
-	hp = 3;
+	if(fight_index == 6){
+		hp = 1;
+	}else{
+		hp = 3;
+	}
 	i_frame = 0;
 	player_x = 44;
 	player_y = 14;
@@ -1088,6 +1092,36 @@ void combat_progress(){
 			combat_counter ++;
 			win();
 		}
+	}else if(current_fight == 6){  // mini-game 7 sec
+		if(combat_counter == 1 && combat_time >= 1){
+			combat_counter ++;
+			int i;
+			for(i=0;i<7;i++){
+				spawn(5,88,8+i,0,0,-100,0,0);
+			}
+		}else if(combat_counter == 2 && combat_time >= 1.5){
+			combat_counter ++;
+			int i;
+			for(i=0;i<5;i++){
+				spawn(5,88,15+i,0,0,-100,0,0);
+			}
+		}else if(combat_counter == 3 && combat_time >= 2.5){
+			combat_counter ++;
+			int i;
+			for(i=0;i<24;i++){
+				spawn(5,21+i,27,0,0,0,-10,0);
+				spawn(5,44+i,0,0,0,0,10,0);
+			}
+		}else if(combat_counter == 4 && combat_time >= 5.5){
+			combat_counter ++;
+			int i;
+			for(i=0;i<8;i++){
+				spawn(5,88,10+i,-60,0,0,0,0);
+			}
+		}else if(combat_counter == 5 && combat_time >= 7){
+			combat_counter ++;
+			win();
+		}
 	}
 }
 
@@ -1156,7 +1190,7 @@ void chapter_1(){
 			if(select_choice == 1){
 				subchapter = 4;
 				clear_text();
-				start_fight(5);    // enter combat mode
+				start_fight(6);    // enter combat mode
 			}else if(select_choice == 2){
 				subchapter = 5;
 				show_text(0);
