@@ -1,6 +1,6 @@
 [Project]
-FileName=ProjectSOUND.dev
-Name=ProjectSOUND
+FileName=In-the-village.dev
+Name=In-the-village
 Type=1
 Ver=2
 ObjFiles=
@@ -19,7 +19,7 @@ ObjectOutput=
 LogOutput=
 LogOutputEnabled=0
 OverrideOutput=0
-OverrideOutputName=ProjectSOUND.exe
+OverrideOutputName=In-the-village.exe
 HostApplication=
 UseCustomMakefile=0
 CustomMakefile=
@@ -51,7 +51,7 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit1]
-FileName=testsound1.c
+FileName=main.c
 CompileCpp=0
 Folder=
 Compile=1
