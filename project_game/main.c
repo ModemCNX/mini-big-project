@@ -5,7 +5,7 @@
 #include <math.h>
 
 //variable that NOT gonna change by player ( system variable )
-char version[] = "1.2.4";
+char version[] = "1.2.5";
 
 int w=0,a=0,s=0,d=0,space=0; // user input flag
 
@@ -110,7 +110,7 @@ void draw(char data[]){
 		sprintf(text,"\e[%d;%dH",draw_start_y + i,draw_start_x);
 		strcat(draw_action,text);
 		for(j=0;j<draw_x;j++){
-			char pixel_data[9] = "";
+			char pixel_data[10] = "";
 			int data_rgb,data_r,data_g,data_b;
 			strncpy(pixel_data , data + index , 9);
 			index += 9;
@@ -287,7 +287,7 @@ void display_var(){              // for debug only
 	printf("\e[%d;%dH",4,92); // set cursor position (y,x)
 	printf("[hp:%d x:%d y:%d]",hp,player_x,player_y);
 	printf("\e[%d;%dH",5,92); // set cursor position (y,x)
-	printf("[c_time:%.3f foe:%f]",combat_time,eee);
+	printf("[c_time:%.3f eee:%f]",combat_time,eee);
 	printf("\e[%d;%dH",6,92); // set cursor position (y,x)
 	printf("[c_counter:%d]",combat_counter);
 	
