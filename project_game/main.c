@@ -254,7 +254,7 @@ char cab_man[] = "20550900070290680060290680060290680060550900070550900070550900
 
 //text data
 
-char text_data[150][10000];
+char text_data[200][10000];
 void make_text()
 { // compatible with only ansi escape code that end with 'H' or 'm' only 
 	strcpy (text_data[0],"\e[4;94HNarator");
@@ -318,9 +318,9 @@ void make_text()
 
 	strcpy (text_data[38],"\e[7;94H\e[38;2;236;254;132mTake this\e[8;94HIt is the garlic\e[9;94HThat I planted myself.\e[10;94HDo you know\e[11;94HThe garlic is\e[12;94HHigh in vitamin C.\e[0m\e[13;113H\e[38;2;255;204;30m...Um\e[14;116HOk\e[15;109HThank you\e[0m");
 
-	strcpy (text_data[39],"\e[7;94HYou have now greeted\e[8;94HEvery villager.\e[10;94HWhat would you like\e[11;94HTo do next?\e[23;94H1.Rematch with lodern.\e[24;94H2.Explore the forest\e[25;94HAround here.e\[0m");
+	strcpy (text_data[39],"\e[7;94HYou have now greeted\e[8;94HEvery villager.\e[10;94HWhat would you like\e[11;94HTo do next?\e[23;94H1.Rematch with lodern.\e[24;94H2.Explore the forest\e[25;94HAround here.\e[0m");
 
-	strcpy (text_data[40],"\e[7;94H\e[38;2;185;80;80mReturn for the revenge?\e[8;94HFaster than expect.\e[9;94HCome to me!!e\[0m\e[10;102H\e[38;2;255;204;30mOk. let's dance.e\[0m");
+	strcpy (text_data[40],"\e[7;94H\e[38;2;185;80;80mReturn for the revenge?\e[8;94HFaster than expect.\e[9;94HCome to me!!\e[0m\e[10;102H\e[38;2;255;204;30mOk. let's dance.\e[0m");
 	
 	strcpy (text_data[41],"\e[7;94H\e[38;2;185;80;80mLooks like this time\e[8;94HI win as usual.\e[9;94HAlright\e[10;94HDo you still\e[11;94HWanna fight?\e[0m\e[23;94H\e[38;2;255;204;30mNo, enough for today\e[24;94HI can still fight.\e[0m");
 
@@ -340,14 +340,14 @@ void make_text()
 
 	strcpy (text_data[49],"\e[7;113H\e[38;2;255;204;30mI see\e[8;114HThen\e[9;99HI'll go take a walk\e[10;96HAnd look at the forest\e[11;106HAround here.\e[0m\e[12;94H\e[38;2;114;118;148mBe careful\e[13;94HThere are a lot of\e[14;94HWild animals\e[15;94HAround here.\e[0m\e[16;109H\e[38;2;255;204;30mAll right\e[17;102HI'll be careful.\e[0m");
 
-	strcpy (text_data[50],"\e[7;96H\e[38;2;255;204;30mThe forest around here\e[8;106HLook so lush\e[9;106HAnd fertile.\e[10;103HThat's a bear!!\e[0m\e[11;94H\e[38;2;159;75;0mRawwww!!!!\e[0m\e[23;94HFight.\e[24;94HEscape.\e[0m"); 
+	strcpy (text_data[50],"\e[7;96H\e[38;2;255;204;30mThe forest around here\e[8;106HLook so lush\e[9;106HAnd fertile.\e[0m"); 
 
 	strcpy (text_data[51],"\e[7;108H\e[38;2;255;204;30mLooks like\e[8;99HYou want to eat me.\e[9;97HBut that's impossible.\e[10;112HCome!!\e[0m"); 
 	
-	strcpy (text_data[52],"\e[9;111H\e[38;2;255;23;17mPhew...\e[9;104Hfinally got it\e[9;105Hto the front.\e[9;109HSo heavy.\e[0m");	
+	strcpy (text_data[52],"\e[7;111H\e[38;2;255;204;30mPhew...\e[8;104Hfinally got it\e[9;105Hto the front.\e[10;109HSo heavy.\e[0m");	
 
-	strcpy (text_data[53],"\e[7;94H\e[38;2;121;4;0mWow\e[8;94HYou're really good\e[9;94HYou can already\e[10;94HHunt bears\e[11;94HOn the first day.\e[0m");
-		
+	strcpy (text_data[53],"\e[7;94H\e[38;2;255;23;17mWow\e[8;94HYou're really good\e[9;94HYou can already\e[10;94HHunt bears\e[11;94HOn the first day.\e[0m");
+	
 	strcpy (text_data[54],"\e[7;94H\e[38;2;114;118;148mI guess\e[8;94HWe'll have enough food\e[9;94HTo eat for a while.\e[0m");
 		
 	strcpy (text_data[55],"\e[7;94H\e[38;2;185;80;80mYay!\e[8;94HBear Meat Stew.\e[0m");
@@ -366,7 +366,7 @@ void make_text()
 
 	strcpy (text_data[62],"\e[7;94H\e[38;2;62;129;165mLooks like\e[8;94HYou have no wounds.\e[9;94HThen you can go out\e[10;94HAnd liveyour normal life.\e[0m");
 
-	strcpy (text_data[63],"\e[7;102H\e[38;2;255;23;17mThis is not good\e[8;98HI'd better run away.\e[0m"); 
+	strcpy (text_data[63],"\e[7;102H\e[38;2;255;204;30mThis is not good\e[8;98HI'd better run away.\e[0m"); 
 
 	strcpy (text_data[64],"\e[7;111H\e[38;2;255;204;30mOH shit\e[0m"); 
 	
@@ -487,6 +487,14 @@ void make_text()
 	strcpy (text_data[122],"\e[7;94HAfter that\e[8;94HYou and your friends\e[9;94HSurvived\e[10;94HAnd continued living.");
 	
 	strcpy (text_data[123],"\e[7;114H\e[38;2;255;204;30mSure\e[8;103HThat looks fun.\e[0m\e[9;94H\e[38;2;254;18;101mI'm glad you said that.\e[0m"); 
+
+
+
+	strcpy (text_data[150],"\e[7;103HThat's a bear!!\e[0m\e[8;94H\e[38;2;159;75;0mRawwww!!!!\e[0m\e[23;94HFight.\e[24;94HEscape.\e[0m"); 
+	
+	strcpy (text_data[151],"\e[7;94H\e[38;2;62;129;165mNow\e[8;94HLet's see\e[0m");
+	
+	strcpy (text_data[152],"\e[7;94H\e[38;2;62;129;165mIf you've gotten\e[8;94HAny injuries.\e[0m");
 
 }
 
@@ -876,20 +884,29 @@ void update_enemy(){
 	}
 }
 
+void clear_enemy(){
+    int i;
+    for(i=0;i<1000;i++){
+        enemy_container[i].life_time = 0;
+    }
+}
+
 void lose(){
-	if(lose_time > 0){
-		lose_time -= delta_time;
-	}else{
-		last_fight_result = 0;
-		current_fight = 0;
-		printf("\e[23;94H   ");// clear heart ui
-	}
+    if(lose_time > 0){
+        lose_time -= delta_time;
+    }else{
+        clear_enemy();
+        last_fight_result = 0;
+        current_fight = 0;
+        printf("\e[23;94H   ");// clear heart ui
+    }
 }
 
 void win(){
-	last_fight_result = 1;
-	current_fight = 0;
-	printf("\e[23;94H   ");// clear heart ui
+    clear_enemy();
+    last_fight_result = 1;
+    current_fight = 0;
+    printf("\e[23;94H   ");// clear heart ui
 }
 
 void move(){   
@@ -1635,13 +1652,13 @@ void chapter_1()
 	}
 	else if(subchapter == 1)
 	{
-		if(check_space()){
+		if(check_space())
+		{
 			draw(cab_man);
 			printf("\e[4;94H\e[0mNarator");
 			show_text(17);
 			subchapter = 2;
 		}
-
 	}
 	else if(subchapter == 2)
 	{
@@ -1723,15 +1740,12 @@ void chapter_2()
 		subchapter = 8;
 	}
 	else if(subchapter == 8)
-	{
-		
+	{	
 		sleep(3);
 		draw(gui);
 		draw(red_hair_quest_board);
 		subchapter = 9;
 		printf("\e[4;94H\e[0m\e[38;2;185;80;80mLodern      \e[0m");
-		
-		
 	}
 	else if(subchapter == 9)
 	{
@@ -1892,15 +1906,12 @@ void chapter_3()
 	} 
 	else if(subchapter == 13)
 	{
-		if(check_space())
-		{
-			draw(closed_pen);
-			sleep(2);
-			draw(copper_closed_pen);
-			printf("\e[4;94H\e[0m\e[38;2;236;254;132mCopper    \e[0m");
-			show_text(37);
-			subchapter = 14;
-		}
+		draw(closed_pen);
+		sleep(2);
+		draw(copper_closed_pen);
+		printf("\e[4;94H\e[0m\e[38;2;236;254;132mCopper    \e[0m");
+		show_text(37);
+		subchapter = 14;
 	}  
 	else if(subchapter == 14)
 	{
@@ -1913,7 +1924,7 @@ void chapter_3()
 			subchapter = 15;
 		}
 	}
-	else if(subchapter == 14)
+	else if(subchapter == 15)
 	{
 		if(check_space())
 		{
@@ -1923,6 +1934,520 @@ void chapter_3()
 } 
 
 
+void chapter_4()
+{
+	if (subchapter == 0)
+	{
+		draw(gui);
+		draw(home);
+		subchapter = 1;
+		printf("\e[4;94H\e[0m\e[38;2;114;118;148m        \e[0m");
+		show_text(39);
+		printf("\e[%d;%dH",23,93); // set cursor position (y,x)
+		printf(">");
+	}
+	else if (subchapter == 1)
+	{
+		int old_choice = check_select_choice(2);
+		if (old_choice)
+		{
+			printf("\e[%d;%dH",22+old_choice,93); // set cursor position (y,x)
+			printf(" ");
+			printf("\e[%d;%dH",22+select_choice,93); // set cursor position (y,x)
+			printf(">");
+		}
+
+		if(check_space())
+		{
+			printf("\e[%d;%dH",22+select_choice,93); // set cursor position (y,x)
+			printf(" ");
+			if(select_choice == 1)
+			{
+				subchapter = 2;
+			}
+			else if(select_choice == 2)
+			{
+				change_chapter(5);
+			}
+		}	
+	} 
+	else if(subchapter == 2)
+	{
+		draw(red_hair_quest_board);
+		printf("\e[4;94H\e[0m\e[38;2;185;80;80mLodern      \e[0m");
+		show_text(40);
+		subchapter = 3;
+		
+	}
+	else if(subchapter == 3)
+	{
+		if(check_space())
+		{
+			subchapter = 4;
+		}
+	}
+	else if(subchapter == 4)
+	{
+		subchapter = 5;
+		clear_text();
+		start_fight(2);
+	}
+	else if (subchapter == 5)
+	{
+		if(last_fight_result == 1)
+		{     
+			subchapter = 9;
+			show_text(4);
+		}else if(last_fight_result == 0)
+		{    
+			subchapter = 6;
+			show_text(5);
+		}
+	}
+	else if(subchapter == 6)
+	{
+		draw(lose_red_hair);
+		subchapter = 7;
+	}
+	else if(subchapter == 7)
+	{	
+		sleep(2);
+		draw(gui);
+		draw(red_hair_quest_board);
+		printf("\e[4;94H\e[0m\e[38;2;185;80;80mLodern      \e[0m");
+		show_text(41);
+		printf("\e[%d;%dH",23,93); // set cursor position (y,x)
+		printf(">");
+		subchapter = 8;
+	}
+	else if (subchapter == 8)
+	{
+		int old_choice = check_select_choice(2);
+		if (old_choice)
+		{
+			printf("\e[%d;%dH",22+old_choice,93); // set cursor position (y,x)
+			printf(" ");
+			printf("\e[%d;%dH",22+select_choice,93); // set cursor position (y,x)
+			printf(">");
+		}
+
+		if(check_space())
+		{
+			printf("\e[%d;%dH",22+select_choice,93); // set cursor position (y,x)
+			printf(" ");
+			if(select_choice == 1)
+			{
+				subchapter = 0;
+			}
+			else if(select_choice == 2)
+			{
+				subchapter = 4;
+			}
+		}
+	} 
+	else if(subchapter == 9)
+	{
+		draw(punch_red_hair);
+		sleep(2);
+		draw(gui);
+		draw(red_hair_quest_board);
+		printf("\e[4;94H\e[0m\e[38;2;185;80;80mLodern      \e[0m");
+		show_text(43);
+		subchapter = 10;
+		
+	}
+	else if(subchapter == 10)
+	{
+		if(check_space())
+		{
+			draw(quest_board);
+			printf("\e[4;94H\e[0m\e[38;2;185;80;80m      \e[0m");
+			show_text(44);
+			subchapter = 11;
+		}
+	}
+	else if(subchapter == 11)
+	{
+		if(check_space())
+		{
+			draw(roger_quest_board);
+			printf("\e[4;94H\e[0m\e[38;2;114;118;148mRoger   \e[0m");
+			show_text(45);
+			subchapter = 12;
+		}
+	}
+	else if(subchapter == 12)
+	{
+		if(check_space())
+		{
+			draw(Ophelia_paper);
+			printf("\e[4;94H\e[0m\e[38;2;114;118;148mRoger   \e[0m");
+			show_text(46);
+			subchapter = 13;
+		}
+	}
+	else if(subchapter == 13)
+	{
+		if(check_space())
+		{
+			draw(Ophelia_paper);
+			printf("\e[4;94H\e[0m\e[38;2;114;118;148mRoger   \e[0m");
+			show_text(47);
+			subchapter = 14;
+		}
+	}
+	else if(subchapter == 14)
+	{
+		if(check_space())
+		{
+			draw(Ophelia_paper);
+			printf("\e[4;94H\e[0m\e[38;2;114;118;148mRoger   \e[0m");
+			show_text(48);
+			subchapter = 15;
+		}
+	}
+	else if(subchapter == 15)
+	{
+		if(check_space())
+		{
+			draw(roger_quest_board);
+			printf("\e[4;94H\e[0m\e[38;2;114;118;148mRoger   \e[0m");
+			show_text(49);
+			subchapter = 16;
+		}
+	}
+	else if(subchapter == 16)
+	{
+		if(check_space())
+		{
+			change_chapter(5);
+		}
+	}
+}
+
+void chapter_5()
+{
+	if (subchapter == 0)
+	{
+		draw(gui);
+		draw(woods_way);
+		printf("\e[4;94H\e[0m\e[38;2;114;118;148m       \e[0m");
+		show_text(50);
+		subchapter = 1;
+	}
+	else if(subchapter == 1)
+	{
+		if(check_space())
+		{
+			draw(bear_wood_way);
+			printf("\e[4;94H\e[0m\e[38;2;159;75;0mBear    \e[0m");
+			show_text(150);
+			printf("\e[%d;%dH",23,93); // set cursor position (y,x)
+			printf(">");
+			subchapter = 2;	
+		}
+	}
+	else if (subchapter == 2)
+	{
+		int old_choice = check_select_choice(2);
+		if (old_choice)
+		{
+			printf("\e[%d;%dH",22+old_choice,93); // set cursor position (y,x)
+			printf(" ");
+			printf("\e[%d;%dH",22+select_choice,93); // set cursor position (y,x)
+			printf(">");
+		}
+
+		if(check_space())
+		{
+			printf("\e[%d;%dH",22+select_choice,93); // set cursor position (y,x)
+			printf(" ");
+			if(select_choice == 1)
+			{
+				subchapter = 3;
+				
+			}
+			else if(select_choice == 2)
+			{
+				subchapter = 13;
+			}
+		}
+	}
+	else if (subchapter == 3)
+	{
+		draw(bear_wood_way);
+		printf("\e[4;94H\e[0m\e[38;2;159;75;0mBear    \e[0m");
+		show_text(51);
+		subchapter = 4;
+	}
+	else if(subchapter == 4)
+	{
+		if(check_space())
+		{
+			subchapter = 5;	
+			clear_text();
+			start_fight(3);
+		}
+	}
+	else if (subchapter == 5){
+		if(last_fight_result == 1){     // win
+			subchapter = 6;
+			show_text(4);
+		}else if(last_fight_result == 0){     // lose
+			subchapter = 13;
+			show_text(5);
+		}
+	}
+	else if (subchapter == 6)
+	{
+		draw(kill_bear);
+		sleep(2);
+		draw(gui);
+		draw(bear_zoro_sleep_home);
+		printf("\e[4;94H\e[0m\e[38;2;114;118;148m       \e[0m");
+		show_text(52);
+		subchapter = 7;
+	}
+	else if(subchapter == 7)
+	{
+		if(check_space())
+		{
+			draw(jim_bear_donut_sleep_home);
+			printf("\e[4;94H\e[0m\e[38;2;255;23;17mJim     \e[0m");
+			show_text(53);
+			subchapter = 8;
+		}
+	}
+	else if(subchapter == 8)
+	{
+		if(check_space())
+		{
+			draw(roger_bear_donut_sleep_home);
+			printf("\e[4;94H\e[0m\e[38;2;114;118;148mRoger    \e[0m");
+			show_text(54);
+			subchapter = 9;
+		}
+	}
+	else if(subchapter == 9)
+	{
+		if(check_space())
+		{
+			draw(red_hair_bear_donut_sleep_home);
+			printf("\e[4;94H\e[0m\e[38;2;185;80;80mLodern     \e[0m");
+			show_text(55);
+			subchapter = 10;
+		}
+	}
+	else if(subchapter == 10)
+	{
+		if(check_space())
+		{
+			draw(monk_bear_donut_sleep_home);
+			printf("\e[4;94H\e[0m\e[38;2;243;223;48mBerk   \e[0m");
+			show_text(56);
+			subchapter = 11;
+		}
+	}
+	else if(subchapter == 11)
+	{
+		if(check_space())
+		{
+			draw(roger_bear_donut_sleep_home);
+			printf("\e[4;94H\e[0m\e[38;2;114;118;148mRoger    \e[0m");
+			show_text(57);
+			subchapter = 12;
+		}
+	}
+	else if(subchapter == 12)
+	{
+		if(check_space())
+		{
+			draw(helena_bear_donut_sleep_home);
+			printf("\e[4;94H\e[0m\e[38;2;62;129;165mHelena    \e[0m");
+			show_text(58);
+			subchapter = 17;
+		}
+	}
+	else if(subchapter == 13)
+	{
+		
+		draw(gui);
+		draw(bear_wood_way);
+		printf("\e[4;94H\e[0m\e[38;2;159;75;0mBear    \e[0m");
+		show_text(63);
+		subchapter = 14;
+	}
+	else if(subchapter == 14)
+	{
+		if(check_space())
+		{
+			draw(run_from_bear1);
+			sleep(2);
+			draw(run_from_bear2);
+			sleep(2);
+			draw(walk_on_banana);
+			sleep(2);
+			draw(fail);
+			sleep(2);
+			draw(gui);
+			draw(bear_home);
+			printf("\e[4;94H\e[0m\e[38;2;159;75;0mBear    \e[0m");
+			show_text(64);
+			subchapter = 15;
+		}
+	}
+	else if(subchapter == 15)
+	{
+		if(check_space())
+		{
+			draw(bear_donut_stand_home);
+			sleep(1);
+			draw(bear_donut_sleep_home);
+			printf("\e[4;94H\e[0m\e[38;2;159;75;0mBear    \e[0m");
+			subchapter = 16;
+		}
+	}
+	else if(subchapter == 16)
+	{
+		if(check_space())
+		{
+			draw(jim_bear_donut_sleep_home);
+			printf("\e[4;94H\e[0m\e[38;2;255;23;17mJim     \e[0m");
+			show_text(65);
+			subchapter = 8;
+		}
+	}
+	else if(subchapter == 17)
+	{
+		if(check_space())
+		{
+			draw(helena1);
+			printf("\e[4;94H\e[0m\e[38;2;62;129;165mHelena    \e[0m");
+			show_text(59);
+			subchapter = 18;
+		}
+	}
+	else if(subchapter == 18)
+	{
+		if(check_space())
+		{
+			draw(helena2);
+			printf("\e[4;94H\e[0m\e[38;2;62;129;165mHelena    \e[0m");
+			show_text(151);
+			subchapter = 19;
+		}
+	}
+	else if(subchapter == 19)
+	{
+		if(check_space())
+		{
+			draw(helena_check);
+			printf("\e[4;94H\e[0m\e[38;2;62;129;165mHelena    \e[0m");
+			show_text(152);
+			subchapter = 20;
+		}
+	}
+	else if(subchapter == 20)
+	{
+		if(check_space())
+		{
+			if(hurt == 1)
+			{
+				draw(helena_check);
+				printf("\e[4;94H\e[0m\e[38;2;62;129;165mHelena    \e[0m");
+				show_text(60);
+				subchapter = 21;	
+			}
+			else
+			{
+				draw(helena_check);
+				printf("\e[4;94H\e[0m\e[38;2;62;129;165mHelena    \e[0m");
+				show_text(62);
+				subchapter = 23;	
+			}
+		}
+	}
+	else if(subchapter == 21)
+	{
+		if(check_space())
+		{
+			draw(helena_heal1);
+			printf("\e[4;94H\e[0m\e[38;2;62;129;165mHelena    \e[0m");
+			show_text(61);
+			subchapter = 22;
+		}
+	}
+	else if(subchapter == 22)
+	{
+		if(check_space())
+		{
+			draw(gui);
+			draw(helena_heal2);
+			sleep(2);
+			draw(home_of_helena);
+			printf("\e[4;94H\e[0m\e[38;2;62;129;165mHelena    \e[0m");
+			subchapter = 23;
+		}
+	}
+	else if(subchapter == 23)
+	{
+		if(check_space())
+		{
+			draw(helena_home_of_helena);
+			printf("\e[4;94H\e[0m\e[38;2;62;129;165mHelena    \e[0m");
+			show_text(66);
+			subchapter = 24;
+		}
+	}
+	else if(subchapter == 24)
+	{
+		if(check_space())
+		{
+			change_chapter(6);
+		}
+	}
+}
+
+void chapter_6()
+{
+	if (subchapter == 0)
+	{
+		draw(gui);
+		draw(woods_way);
+		sleep(2);
+		draw(T_way);
+		printf("\e[4;94H\e[0m\e[38;2;114;118;148m       \e[0m");
+		show_text(67);
+		subchapter = 1;
+		printf("\e[%d;%dH",23,93); // set cursor position (y,x)
+		printf(">");
+	}
+	else if (subchapter == 1)
+	{
+		int old_choice = check_select_choice(2);
+		if (old_choice)
+		{
+			printf("\e[%d;%dH",22+old_choice,93); // set cursor position (y,x)
+			printf(" ");
+			printf("\e[%d;%dH",22+select_choice,93); // set cursor position (y,x)
+			printf(">");
+		}
+
+		if(check_space())
+		{
+			printf("\e[%d;%dH",22+select_choice,93); // set cursor position (y,x)
+			printf(" ");
+			if(select_choice == 1)
+			{
+				subchapter = 2;
+			}
+			else if(select_choice == 2)
+			{
+				subchapter = 2;
+			}
+		}	
+	} 
+}
 void game_progress(){    // call every tick
 	if (current_fight != 0){
 		combat_progress();
@@ -1934,7 +2459,14 @@ void game_progress(){    // call every tick
 		chapter_2();
 	}else if (chapter == 3){
 		chapter_3();
+	}else if (chapter == 4){
+		chapter_4();
+	}else if (chapter == 5){
+		chapter_5();
+	}else if (chapter == 6){
+		chapter_6();
 	}
+	
 }
 
 //main bruh
