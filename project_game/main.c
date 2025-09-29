@@ -1927,7 +1927,7 @@ void game_progress(){    // call every tick
 	if (current_fight != 0){
 		combat_progress();
 	}else if (chapter == 0){
-		chapter_3();
+		chapter_0();
 	}else if (chapter == 1){
 		chapter_1();
 	}else if (chapter == 2){
