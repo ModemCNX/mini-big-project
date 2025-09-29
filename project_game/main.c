@@ -358,7 +358,7 @@ void make_text()
 		
 	strcpy (text_data[58],"\e[7;94H\e[38;2;62;129;165mOk\e[8;94HFollow me.\e[0m\e[9;117H\e[38;2;255;204;30mK\e[0m");
 
-	strcpy (text_data[59],"\e[7;94H\e[38;2;62;129;165mI'm a herbalist\e[8;94HSo I have some knowledge\e[9;94HAbout medicine.\e[10;94HNow\e[8;94HLet's see\e[11;94HIf you've gotten\e[12;94HAny injuries.\e[0m");
+	strcpy (text_data[59],"\e[7;94H\e[38;2;62;129;165mI'm a herbalist\e[8;94HSo I have some knowledge\e[9;94HAbout medicine.\e[0m");
 
 	strcpy (text_data[60],"\e[7;94H\e[38;2;62;129;165mLook like\e[8;94HYou have a wound\e[9;94HLet me apply\e[10;94HSome medicine for you.\e[0m");
 		
@@ -2448,6 +2448,7 @@ void chapter_6()
 		}	
 	} 
 }
+
 void game_progress(){    // call every tick
 	if (current_fight != 0){
 		combat_progress();
