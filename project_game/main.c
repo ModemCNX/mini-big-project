@@ -5,7 +5,7 @@
 #include <math.h>
 
 //variable that NOT gonna change by player ( system variable )
-char version[] = "1.2.5";
+char version[] = "1.2.6";
 
 int w=0,a=0,s=0,d=0,space=0; // user input flag
 
@@ -721,9 +721,16 @@ void start_fight(int fight_index){
 	}else{
 		hp = 3;
 	}
+	
 	i_frame = 0;
-	player_x = 44;
-	player_y = 14;
+	
+	if(fight_index == 7){
+		player_x = 21;
+		player_y = 13;
+	}else{
+		player_x = 44;
+		player_y = 14;
+	}
 }
 
 
@@ -1235,7 +1242,6 @@ void combat_progress(){
 			combat_counter ++;
 			win();
 		}
-		
 	}else if(current_fight == 5){  // vamp   60 sec
 	if(combat_counter == 1 && combat_time >= 1){  
 			combat_counter ++;
@@ -1465,6 +1471,39 @@ void combat_progress(){
 			combat_counter ++;
 			win();
 		}
+	}else if(current_fight == 7){  // maze-game <180 sec
+		if(combat_counter == 1 && combat_time >= 0){
+			combat_counter ++;
+			char maze_data[12][46]= {"1 1      1 1   1           1 1   1   1   1    "
+									,"1 1 1111 1   1 1 111111111 1   1   1   1   11 "
+									,"1   1 1  1 111   1       1 11111111111 11111  "
+									,"1 1 1 1 11   11111 11111 1 1 1         1   1 1"
+									,"111 1 1  1 1  1  1 11  1 1     1 11111 1 1 1  "
+									,"      11 1 1  1     1 11 111111111 1 111 1111 "
+									,"11111 11 1111 1 111 1  1   1             1    "
+									,"1   1 1       1 1 1 11 11111 11 111 1 1111 111"
+									,"1 1 1 111111111 1 1        1  1 1 1 1 1 1   1 "
+									,"1 1 1   1     1 1   1 1 1 111 1 1 1 1 1   1 1 "
+									,"1 1 111 1 1 1 1 1 111 1 1 1   1 1 111 1111111 "
+									,"  1       1 1   1 1   1 1   1 1     1         "};
+			int i,j;  // draw maze
+			for(i=0;i<12;i++){
+				for(j=0;j<46;j++){
+					if(maze_data[i][j] == '1')spawn(180,22+j,8+i,0,0,0,0,0);
+				}
+			} 
+			for(i=1;i<=49;i++){ // time left bar :3
+				spawn(((float)i)*(3.6735),19+i,4,0,0,0,0,0);
+			}
+		}else if(combat_counter == 2 && combat_time >= 180){
+			combat_counter ++;
+			lose();
+		}
+		
+		if(player_x == 61 && player_y == 16){
+			win();
+		}
+		printf("\e[48;2;100;200;100m\e[18;63H \e[0m");  // green space
 	}
 }
 
