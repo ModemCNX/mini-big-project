@@ -59,6 +59,7 @@ float move_time_delay_y = 0.15;
 int chapter = 0;
 int subchapter = 0;
 int select_choice = 1;
+
 int knowOphelia = 0;
 int garlic = 0;
 int hurt = 0;
@@ -383,7 +384,7 @@ void make_text()
 
 	strcpy (text_data[69],"\e[7;115H\e[38;2;255;204;30mWow\e[8;98HThere is a lake here\e[9;110HAs well.\e[10;100HIt's an absolutely\e[11;104HGorgeous lake.\e[0m"); 
 
-	strcpy (text_data[70],"\e[7;94H\e[38;2;0;238;255mYou are destined\e[8;94HTo meet me.\e[9;94HTraveler of the forest..\e[10;94HAnswer me this riddle,\e[11;94Hand a gift\e[12;94Hshall be yours.\e[13;94HRiddle:\e[14;94HI have no mouth,\e[15;94Hyet I can roar.\e[16;94HI have no legs,\e[17;94Hyet I can run.\e[18;94HWhat am I?\e[0m\e[23;94H1.The River\e[24;94H2.The Wind\e[25;94H3.The Fire\e[26;94H4.The ****\e[27;94H5.Omniman");
+	strcpy (text_data[70],"\e[7;94H\e[38;2;0;238;255mYou are destined\e[8;94HTo meet me.\e[9;94HTraveler of the forest..\e[10;94HAnswer me this riddle,\e[11;94Hand a gift\e[12;94Hshall be yours.\e[13;94HRiddle:\e[14;94HI have no mouth,\e[15;94Hyet I can roar.\e[16;94HI have no legs,\e[17;94Hyet I can run.\e[18;94HWhat am I?\e[0m\e[23;94H1.The River\e[24;94H2.The Wind\e[25;94H3.The Fire\e[26;94H4.The ****\e[27;94H5.Omniman\e[0m");
 
 	strcpy (text_data[71],"\e[7;116H\e[38;2;255;204;30mOh\e[8;94Hthe water spirit is gone\e[9;106HDid I answer\e[10;99Hthe question wrong?\e[11;103HWhat's going on\e[12;103Hin this forest?\e[0m"); 
 
@@ -501,6 +502,7 @@ void make_text()
 
 	strcpy (text_data[153],"\e[7;106H\e[38;2;255;204;30mWhat's that?\e[0m\e[8;94H\e[38;2;0;238;255mI am the Water Spirit\e[9;94HWho looks after\e[10;94HThis lake.\e[0m\e[11;98H\e[38;2;255;204;30mWhy did you show up?\e[0m"); 
 
+	strcpy (text_data[154],"\e[7;94H\e[38;2;0;238;255mYou are destined\e[8;94HTo meet me.\e[9;94HTraveler of the forest..\e[10;94HAnswer me this riddle,\e[11;94Hand a gift\e[12;94Hshall be yours.\e[13;94HRiddle:\e[14;94HI have no mouth,\e[15;94Hyet I can roar.\e[16;94HI have no legs,\e[17;94Hyet I can run.\e[18;94HWhat am I?\e[0m\e[23;94H1.The River\e[24;94H2.The Wind\e[0m");
 }
 
 // display function
@@ -741,6 +743,10 @@ void combat_screen_clear(){  // 89x28
 void take_damage(){
 	i_frame = i_frame_time;
 	hp -= 1;
+	if(current_fight == 3)
+	{
+		hurt = 1;
+	}
 	if(hp <= 0){
 		lose_time = 3;
 		combat_screen_clear();
@@ -2169,8 +2175,7 @@ void chapter_5()
 			printf(" ");
 			if(select_choice == 1)
 			{
-				subchapter = 3;
-				
+				subchapter = 3;		
 			}
 			else if(select_choice == 2)
 			{
@@ -2199,6 +2204,7 @@ void chapter_5()
 			subchapter = 6;
 			show_text(4);
 		}else if(last_fight_result == 0){     // lose
+			hurt = 1;
 			subchapter = 13;
 			show_text(5);
 		}
@@ -2386,7 +2392,6 @@ void chapter_5()
 	{
 		if(check_space())
 		{
-			draw(gui);
 			draw(helena_heal2);
 			sleep(2);
 			draw(home_of_helena);
@@ -2475,6 +2480,7 @@ void chapter_6()
 			draw(water_spirit);
 			printf("\e[4;94H\e[0m\e[38;2;0;238;255mWater Spirit \e[0m");
 			show_text(70);
+			//show_text(154);
 			subchapter = 5;
 			printf("\e[%d;%dH",23,93); // set cursor position (y,x)
 			printf(">");
@@ -2482,25 +2488,26 @@ void chapter_6()
 	}
 	else if (subchapter == 5)
 	{
-		int old_choice = check_select_choice(2);
+		int old_choice = check_select_choice(5);
 		if (old_choice)
 		{
-			printf("\e[%d;%dH",22+old_choice,93); // set cursor position (y,x)
+			printf("\e[%d;%dH",21+old_choice,93); // set cursor position (y,x)
 			printf(" ");
-			printf("\e[%d;%dH",22+select_choice,93); // set cursor position (y,x)
+			printf("\e[%d;%dH",21+select_choice,93); // set cursor position (y,x)
 			printf(">");
 			if(check_space())
 			{
-				printf("\e[%d;%dH",22+select_choice,93); // set cursor position (y,x)
+				printf("\e[%d;%dH",21+select_choice,93); // set cursor position (y,x)
 				printf(" ");
-			}
-			if(select_choice == 1)
-			{
-				subchapter = 6;
-			}
-			else
-			{
-				subchapter = 8;
+			
+				if(select_choice == 1)
+				{
+					subchapter = 6;
+				}
+				else //(select_choice == 2)
+				{
+					subchapter = 8;
+				}
 			}
 		}	
 	}
@@ -2727,7 +2734,7 @@ void chapter_7()
 	{
 		draw(billy_sleep);
 		printf("\e[4;94H\e[0m\e[38;2;122;105;90m       \e[0m");
-		show_text(77);
+		show_text(76);
 		subchapter = 14;	
 	} 
 	else if(subchapter == 14)
@@ -2759,7 +2766,7 @@ void game_progress(){    // call every tick
 	if (current_fight != 0){
 		combat_progress();
 	}else if (chapter == 0){
-		chapter_7();
+		chapter_0();
 	}else if (chapter == 1){
 		chapter_1();
 	}else if (chapter == 2){
