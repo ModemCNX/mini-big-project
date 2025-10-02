@@ -643,6 +643,11 @@ void play_sound(char sound_data[]){
 	PlaySound(sound_data, NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 }
 
+void play_sound2(char sound_data[]) { 
+    PlaySound(sound_data, NULL, SND_FILENAME | SND_ASYNC);
+}
+
+
 // update function
 
 void update_input(){
