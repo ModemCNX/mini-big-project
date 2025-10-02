@@ -398,7 +398,7 @@ void make_text()
 
 	strcpy (text_data[76],"\e[7;109H\e[38;2;255;204;30mThat's an\e[8;100HUnconscious person\e[9;102HI can't help him\e[10;109HRight now\e[11;102HHe's too injured\e[12;102HI can't move him\e[13;114HThen\e[14;104HLet's go check\e[15;95HThe safety of the cave.\e[0m"); 
 
-	strcpy (text_data[77],"\e[7;108H\e[38;2;255;204;30mHoly water\e[8;103HMight help him.\e[0m\e[23;94HPour holy water on him.\e[25;94HKeep the holy water."); 
+	strcpy (text_data[77],"\e[7;108H\e[38;2;255;204;30mHoly water\e[8;103HMight help him.\e[0m\e[23;94HPour holy water on him.\e[24;94HKeep the holy water."); 
 
 	strcpy (text_data[78],"\e[7;100H\e[38;2;255;204;30mHey, are you okay?\e[0m\e[8;94H\e[38;2;122;105;90mI'm not dead yet?\e[0m\e[9;104H\e[38;2;255;204;30mYes, my friend\e[10;115HNow\e[11;98HTell me who you are.\e[12;107H\e[38;2;255;204;30mWhy are you\e[13;105HIn this cave?\e[0m"); 
 	
@@ -408,11 +408,11 @@ void make_text()
 
 	strcpy (text_data[81],"\e[7;97H\e[38;2;255;204;30mjack My name is jack.\e[8;108HJust moved\e[9;95HInto the village today.\e[0m\e[10;94H\e[38;2;122;105;90mOk jack\e[11;94HI think we should go back\e[12;94Hto the village now.\e[0m\e[13;98H\e[38;2;255;204;30mI should investigate\e[14;102HA little deeper.\e[15;94H\e[38;2;122;105;90mThen I'll go back first\e[16;94HTake care.\e[0m\e[17;113H\e[38;2;255;204;30mSure.\e[0m");
 	
-	strcpy (text_data[82],"\e[7;100H\e[38;2;255;204;30mIt seems this cave\e[8;95HIs deeper\eThan I thought.\e[9;101HOuch, did I trip?\e[0m"); 	
+	strcpy (text_data[82],"\e[7;100H\e[38;2;255;204;30mIt seems this cave\e[8;109HIs deeper\e[9;103HThan I thought.\e[10;101HOuch, did I trip?\e[0m"); 	
 
-	strcpy (text_data[83],"\e[7;94H\e[38;2;255;204;30mWhere is this door from?\e[8;105HOh, I get it.\e[9;103H must have hit\e[10;97Hsome kind of mechanis\e[11;109HJust now.\e[12;95HThat make the door open\e[13;114HHuh?\e[14;101HLet me just go in\e[15;102HAnd take a look.\e[0m"); 
+	strcpy (text_data[83],"\e[7;94H\e[38;2;255;204;30mWhere is this door from?\e[8;105HOh, I get it.\e[9;102HI must have hit\e[10;97Hsome kind of mechanis\e[11;109HJust now.\e[12;95HThat make the door open\e[13;114HHuh?\e[14;101HLet me just go in\e[15;102HAnd take a look.\e[0m"); 
 
-	strcpy (text_data[84],"\e[7;109H\e[38;2;255;204;30mOh my god\e[8;108HIs this an\e[9;103HAnimal remains?\e[10;95HIt looks like there are\e[11;102HHuman bones too.\e[12;98HThe previous monster\e[13;108HDoes this?\e[14;101HThere seems to be\e[15;105HAnother door.\e[0m");
+	strcpy (text_data[84],"\e[7;109H\e[38;2;255;204;30mOh my god\e[8;108HIs this an\e[9;103HAnimal remains?\e[10;95HIt looks like there are\e[11;102HHuman bones too.\e[12;98HThe previous monster\e[13;108HDoes this?\e[0m");
 
 	strcpy (text_data[85],"\e[7;97H\e[38;2;255;204;30mWhat's going on here?\e[8;108HA mansion?\e[9;98HIt doesn't look like\e[10;94HA place for that monster\e[11;110HTo live.\e[0m"); 
 
@@ -450,7 +450,7 @@ void make_text()
 
 	strcpy (text_data[102],"\e[7;112H\e[38;2;255;204;30mThat's\e[8;97HThe girl on the sign.\e[9;105HHey, wake up.\e[0m"); 
 
-	strcpy (text_data[103],"\e[7;94H\e[38;2;0;255;29mOh my god\e[8;94HI haven't seen anyone\e[9;94HIn a long time.\e[0m\e[10;102H\e[38;2;255;204;30mWhat do you mean\e[11;100HAre you a monster?\e[0m\e[12;94H\e[38;2;0;255;29mNo\e[13;94HI was captured\e[9;94Hand brought here.\e[14;94HMy name's Ophelia.\e[0m");
+	strcpy (text_data[103],"\e[7;94H\e[38;2;0;255;29mOh my god\e[8;94HI haven't seen anyone\e[9;94HIn a long time.\e[0m\e[10;102H\e[38;2;255;204;30mWhat do you mean\e[11;100HAre you a monster?\e[0m\e[12;94H\e[38;2;0;255;29mNo\e[13;94HI was captured\e[14;94Hand brought here.\e[15;94HMy name's Ophelia.\e[0m");
 
 	strcpy (text_data[104],"\e[7;98H\e[38;2;255;204;30mWhen you disappeared\e[8;101HMany people tried\e[9;106HTo find you.\e[10;94HBut no one has been able\e[11;107HTo find you\e[12;103HFor two months.\e[13;98HUntil I met you now.\e[14;107HDon't worry\e[15;94HI'll get you out of here\e[16;99HSo where's the key?\e[0m\e[17;94H\e[38;2;0;255;29mOn the table\e[18;94HNext to\e[19;94HThe vampire's coffin\e[0m"); 
 
@@ -503,6 +503,11 @@ void make_text()
 	strcpy (text_data[153],"\e[7;106H\e[38;2;255;204;30mWhat's that?\e[0m\e[8;94H\e[38;2;0;238;255mI am the Water Spirit\e[9;94HWho looks after\e[10;94HThis lake.\e[0m\e[11;98H\e[38;2;255;204;30mWhy did you show up?\e[0m"); 
 
 	strcpy (text_data[154],"\e[7;94H\e[38;2;0;238;255mYou are destined\e[8;94HTo meet me.\e[9;94HTraveler of the forest..\e[10;94HAnswer me this riddle,\e[11;94Hand a gift\e[12;94Hshall be yours.\e[13;94HRiddle:\e[14;94HI have no mouth,\e[15;94Hyet I can roar.\e[16;94HI have no legs,\e[17;94Hyet I can run.\e[18;94HWhat am I?\e[0m\e[23;94H1.The River\e[24;94H2.The Wind\e[0m");
+
+	strcpy (text_data[155],"\e[7;98H\e[38;2;255;204;30mIs this a maze here?\e[8;101HHmm... looks like\e[9;96HI shouldn't go inside.\e[10;105HBut whatever,\e[11;107Hlet's gooo!\e[0m"); 	
+
+	strcpy (text_data[156],"\e[7;101H\e[38;2;255;204;30mThere seems to be\e[8;105HAnother door.\e[0m");
+
 }
 
 // display function
@@ -2091,6 +2096,7 @@ void chapter_4()
 	{
 		if(check_space())
 		{
+			knowOphelia = 1;
 			draw(Ophelia_paper);
 			printf("\e[4;94H\e[0m\e[38;2;114;118;148mRoger   \e[0m");
 			show_text(46);
@@ -2710,6 +2716,7 @@ void chapter_7()
 	}
 	else if(subchapter == 9)
 	{
+		holywater = 2;
 		draw(billy_stand);
 		printf("\e[4;94H\e[0m\e[38;2;122;105;90m       \e[0m");
 		show_text(78);
@@ -2770,39 +2777,537 @@ void chapter_8()
 	if (subchapter == 0)
 	{
 		draw(gui);
-		draw(cave_entrance);
-		subchapter = 1;
 		printf("\e[4;94H\e[0m\e[38;2;114;118;148m        \e[0m");
-		show_text(74);
+		draw(cave_way2);
+		sleep(1);
+		draw(cave_way1);
+		sleep(1);
+		draw(cave_way2);
+		sleep(1);
+		draw(cave_way1);
+		sleep(1);
+		show_text(82);
+		subchapter = 1;
+	}
+	else if(subchapter == 1)
+	{
+		if(check_space())
+		{
+			draw(gui);
+			clear_text();
+			printf("\e[4;94H\e[0m\e[38;2;204;217;216m        \e[0m");
+			draw(cave_secret_door);
+			show_text(83);
+			subchapter = 2;
+		}
+	}
+	else if(subchapter == 2)
+	{
+		if(check_space())
+		{
+			draw(gui);
+			clear_text();
+			printf("\e[4;94H\e[0m\e[38;2;204;217;216m        \e[0m");
+			draw(cave_secret_door);
+			show_text(155);
+			subchapter = 3;
+		}
+	}
+	else if(subchapter == 3)
+	{
+		if(check_space())
+		{
+			clear_text();
+			start_fight(7);
+			subchapter = 5;
+		}
+	}
+	else if(subchapter == 4)
+	{
+		clear_text();
+		start_fight(7);
+		subchapter = 5;
+	}
+	else if(subchapter == 5)
+	{
+		if(last_fight_result == 1)
+		{     
+			subchapter = 6;
+			show_text(4);
+		}
+		else if(last_fight_result == 0)
+		{    
+			subchapter = 4;
+			show_text(5);
+		}
+	}
+	else if(subchapter == 6)
+	{
+		draw(gui);
+		clear_text();
+		printf("\e[4;94H\e[0m\e[38;2;204;217;216m        \e[0m");
+		draw(cave_body);
+		show_text(84);
+		subchapter = 7;
+	}
+	else if(subchapter == 7)
+	{
+		if(check_space())
+		{
+			draw(gui);
+			clear_text();
+			printf("\e[4;94H\e[0m\e[38;2;204;217;216m        \e[0m");
+			draw(cave_wood_door);
+			show_text(156);
+			subchapter = 8;	
+		}
+	}
+	else if(subchapter == 8)
+	{
+		if(check_space())
+		{
+			draw(gui);
+			clear_text();
+			printf("\e[4;94H\e[0m\e[38;2;204;217;216m        \e[0m");
+			draw(vampire_house1);
+			show_text(85);
+			subchapter = 9;	
+		}
+	}
+	else if(subchapter == 9)
+	{
+		if(check_space())
+		{
+			change_chapter(9);
+		}
+	}
+}
+
+void chapter_9()
+{
+	if (subchapter == 0)
+	{
+		draw(gui);
+		printf("\e[4;94H\e[0m\e[38;2;114;118;148m        \e[0m");
+		draw(vampire_house2);
+		sleep(1);
+		draw(Ophelia_sleep);
+		subchapter = 1;
+	}
+	else if(subchapter == 1)
+	{
+		if(knowOphelia == 1)
+		{
+			subchapter = 19;
+		}
+		else
+		{
+			subchapter = 2;
+		}
+	}
+	else if(subchapter == 2)
+	{
+		draw(gui);
+		clear_text();
+		printf("\e[4;94H\e[0m\e[38;2;204;217;216m        \e[0m");
+		draw(Ophelia_sleep);
+		show_text(86);
+		printf("\e[%d;%dH",23,93); // set cursor position (y,x)
+		printf(">");
+		select_choice = 1;
+		subchapter = 3;
+	}
+	else if (subchapter == 3)
+	{
+		int old_choice = check_select_choice(2);
+		if (old_choice)
+		{
+			printf("\e[%d;%dH",22+old_choice,93); // set cursor position (y,x)
+			printf(" ");
+			printf("\e[%d;%dH",22+select_choice,93); // set cursor position (y,x)
+			printf(">");
+		}
+		if(check_space())
+		{
+			printf("\e[%d;%dH",22+select_choice,93); // set cursor position (y,x)
+			printf(" ");
+			if(select_choice == 1)
+			{
+				subchapter = 4;
+			}
+			else
+			{
+				subchapter = 16;
+			}
+		}	
+	}
+	else if(subchapter == 4)
+	{
+		draw(gui);
+		clear_text();
+		printf("\e[4;94H\e[0m\e[38;2;204;217;216m        \e[0m");
+		draw(Ophelia_sleep);
+		show_text(87);
+		subchapter = 5;
+	}
+	else if(subchapter == 5)
+	{
+		if(check_space())
+		{
+			draw(gui);
+			clear_text();
+			printf("\e[4;94H\e[0m\e[38;2;204;217;216m        \e[0m");
+			draw(Ophelia_awake);
+			show_text(88);
+			subchapter = 6;
+		}
+	}
+	else if(subchapter == 6)
+	{
+		if(check_space())
+		{
+			draw(gui);
+			clear_text();
+			printf("\e[4;94H\e[0m\e[38;2;0;255;29mOphelia\e[0m");
+			draw(Ophelia_hold);
+			show_text(89);
+			subchapter = 7;
+		}
+	}
+	else if(subchapter == 7)
+	{
+		if(check_space())
+		{
+			draw(gui);
+			clear_text();
+			printf("\e[4;94H\e[0m\e[38;2;0;255;29mOphelia\e[0m");
+			draw(Ophelia_hold);
+			show_text(90);
+			subchapter = 8;
+		}
+	}
+	else if(subchapter == 8)
+	{
+		if(check_space())
+		{
+			draw(gui);
+			clear_text();
+			printf("\e[4;94H\e[0m\e[38;2;0;255;29mOphelia\e[0m");
+			draw(Ophelia_hold);
+			show_text(91);
+			subchapter = 9;
+		}
+	}
+	else if(subchapter == 9)
+	{
+		if(check_space())
+		{
+			draw(gui);
+			clear_text();
+			printf("\e[4;94H\e[0m\e[38;2;0;255;29mOphelia\e[0m");
+			draw(Ophelia_hold);
+			show_text(92);
+			subchapter = 25;
+		}
+	}
+	else if(subchapter == 25)
+	{
+		if(check_space())
+		{
+			draw(gui);
+			clear_text();
+			printf("\e[4;94H\e[0m\e[38;2;0;255;29mOphelia\e[0m");
+			draw(Ophelia_hold);
+			show_text(93);
+			subchapter = 10;
+		}
+	}
+	else if(subchapter == 10)
+	{
+		if(check_space())
+		{
+			draw(gui);
+			clear_text();
+			printf("\e[4;94H\e[0m\e[38;2;0;255;29mOphelia\e[0m");
+			draw(Ophelia_hold);
+			show_text(94);
+			subchapter = 11;
+		}
+	}
+	else if(subchapter == 11)
+	{
+		if(check_space())
+		{
+			draw(gui);
+			clear_text();
+			printf("\e[4;94H\e[0m\e[38;2;0;255;29mOphelia\e[0m");
+			draw(table1);
+			show_text(95);
+			subchapter = 12;
+		}
+	}
+	else if(subchapter == 12)
+	{
+		if(check_space())
+		{
+			draw(gui);
+			clear_text();
+			printf("\e[4;94H\e[0m\e[38;2;0;255;29mOphelia\e[0m");
+			draw(table2);
+			show_text(96);
+			subchapter = 13;
+		}
+	}
+	else if(subchapter == 13)
+	{
+		if(check_space())
+		{
+			draw(gui);
+			clear_text();
+			printf("\e[4;94H\e[0m\e[38;2;0;255;29m           \e[0m");
+			draw(vampire_behide_you);
+			show_text(97);
+			subchapter = 14;
+		}
+	}
+	else if(subchapter == 14)
+	{
+		if(check_space())
+		{
+			clear_text();
+			draw(battle_vampire);
+			sleep(2);
+			draw(gui);
+			draw(vampire_T_pose);
+			printf("\e[4;94H\e[0m\e[38;2;254;18;101mVampire\e[0m");
+			show_text(98);
+			subchapter = 15;
+		}
+	}
+	else if(subchapter == 15)
+	{
+		if(check_space())
+		{
+			change_chapter(10);
+		}
+	}
+	else if(subchapter == 16)
+	{
+		clear_text();
+		draw(table1);
+		printf("\e[4;94H\e[0m\e[38;2;254;18;101m         \e[0m");
+		show_text(99);
+		subchapter = 17;
+	}
+	else if(subchapter == 17)
+	{
+		if(check_space())
+		{
+			printf("\e[4;94H\e[0m\e[38;2;254;18;101m         \e[0m");
+			draw(table2);
+			sleep(1);
+			draw(vampire_behide_you);
+			printf("\e[4;94H\e[0m\e[38;2;254;18;101mVampire\e[0m");
+			show_text(100);
+			subchapter = 18;
+		}
+	}
+	else if(subchapter == 18)
+	{
+		if(check_space())
+		{
+			clear_text();
+			draw(battle_vampire);
+			sleep(2);
+			draw(gui);
+			draw(vampire_T_pose);
+			printf("\e[4;94H\e[0m\e[38;2;254;18;101mVampire\e[0m");
+			show_text(101);
+			subchapter = 15;
+		}
+	}
+	else if(subchapter == 19)
+	{
+		clear_text();
+		draw(gui);
+		draw(Ophelia_sleep);
+		printf("\e[4;94H\e[0m\e[38;2;0;255;29mOphelia\e[0m");
+		show_text(102);
+		subchapter = 20;
+	}
+	else if(subchapter == 20)
+	{
+		if(check_space())
+		{
+			clear_text();
+			draw(gui);
+			draw(Ophelia_awake);
+			printf("\e[4;94H\e[0m\e[38;2;0;255;29mOphelia\e[0m");
+			show_text(103);
+			subchapter = 21;
+		}
+	}
+	else if(subchapter == 21)
+	{
+		if(check_space())
+		{
+			clear_text();
+			draw(gui);
+			draw(Ophelia_hold);
+			printf("\e[4;94H\e[0m\e[38;2;0;255;29mOphelia\e[0m");
+			show_text(104);
+			subchapter = 22;
+		}
+	}
+	else if(subchapter == 22)
+	{
+		if(check_space())
+		{
+			clear_text();
+			draw(gui);
+			draw(table1);
+			printf("\e[4;94H\e[0m\e[38;2;0;255;29mOphelia\e[0m");
+			show_text(105);
+			subchapter = 23;
+		}
+	}
+	else if(subchapter == 23)
+	{
+		if(check_space())
+		{
+			clear_text();
+			draw(gui);
+			draw(table2);
+			printf("\e[4;94H\e[0m\e[38;2;0;255;29mOphelia\e[0m");
+			show_text(106);
+			subchapter = 24;
+		}
+	}
+	else if(subchapter == 24)
+	{
+		if(check_space())
+		{
+			clear_text();
+			draw(gui);
+			draw(vampire_behide_you);
+			printf("\e[4;94H\e[0m\e[38;2;0;255;29mOphelia\e[0m");
+			show_text(107);
+			subchapter = 14;
+		}
+	}
+}
+
+void chapter_10()
+{
+	if(subchapter == 0)
+	{
+		clear_text();
+		start_fight(5);
+		subchapter = 1;
+	}
+	else if(subchapter == 1)
+	{
+		if(last_fight_result == 1)
+		{
+			draw(kill_vampire);
+			sleep(2);
+			subchapter = 2;
+			show_text(4);
+		}
+		else if(last_fight_result == 0)
+		{    
+			subchapter = 4000000000000000;
+			show_text(5);
+		}
+	}
+	else if(subchapter == 2)
+	{
+		if(holywater == 0)
+		{
+			draw(gui);
+			printf("\e[4;94H\e[0m\e[38;2;254;18;101mVampire\e[0m");
+			draw(vampire_pull_sword);
+			sleep(2);
+			draw(vampire_hold_sword);
+			show_text(109);
+			subchapter = 3;
+		}
+		else if(holywater == 1)
+		{
+			
+		}
+		else if(holywater == 2)
+		{
+			
+		}
+	}
+	else if(subchapter == 3)
+	{
+		if(check_space())
+		{
+			clear_text();
+			draw(gui);
+			draw(table2);
+			printf("\e[4;94H\e[0m\e[38;2;254;18;101mVampire\e[0m");
+			show_text(106);
+			subchapter = 4;
+		}
+		
 	}
 }
 
 void game_progress(){    // call every tick
-	if (current_fight != 0){
+	if (current_fight != 0)
+	{
 		combat_progress();
-	}else if (chapter == 0){
+	}
+	else if (chapter == 0)
+	{
+		holywater = 1;
 		chapter_0();
-	}else if (chapter == 1){
+	}
+	else if (chapter == 1)
+	{
 		chapter_1();
-	}else if (chapter == 2){
+	}
+	else if (chapter == 2)
+	{
 		chapter_2();
-	}else if (chapter == 3){
+	}
+	else if (chapter == 3)
+	{
 		chapter_3();
-	}else if (chapter == 4){
+	}
+	else if (chapter == 4)
+	{
 		chapter_4();
-	}else if (chapter == 5){
+	}
+	else if (chapter == 5)
+	{
 		chapter_5();
-	}else if (chapter == 6){
+	}
+	else if (chapter == 6)
+	{
 		chapter_6();
 	}
-	else if (chapter == 7){
+	else if (chapter == 7)
+	{
 		chapter_7();
 	}
-	else if (chapter == 8){
+	else if (chapter == 8)
+	{
 		chapter_8();
 	}
-	
+	else if (chapter == 9)
+	{
+		chapter_9();
+	}
+	else if (chapter == 10)
+	{
+		chapter_10();
+	}
 }
+
 
 //main bruh
 void main(){
