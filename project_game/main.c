@@ -1915,6 +1915,7 @@ void chapter_3()
 	} 
 	else if (subchapter == 11){
 		if(check_space()){
+			select_choice = 1;
 			subchapter = 12;
 			show_text(36);
 			printf("\e[%d;%dH",23,93); // set cursor position (y,x)
@@ -1985,6 +1986,7 @@ void chapter_4()
 		subchapter = 1;
 		printf("\e[4;94H\e[0m\e[38;2;114;118;148m        \e[0m");
 		show_text(39);
+		select_choice = 1;
 		printf("\e[%d;%dH",23,93); // set cursor position (y,x)
 		printf(">");
 	}
@@ -2058,6 +2060,7 @@ void chapter_4()
 		draw(red_hair_quest_board);
 		printf("\e[4;94H\e[0m\e[38;2;185;80;80mLodern      \e[0m");
 		show_text(41);
+		select_choice = 1;
 		printf("\e[%d;%dH",23,93); // set cursor position (y,x)
 		printf(">");
 		subchapter = 8;
@@ -2182,6 +2185,7 @@ void chapter_5()
 	{
 		if(check_space())
 		{
+			select_choice = 1;
 			draw(bear_wood_way);
 			printf("\e[4;94H\e[0m\e[38;2;159;75;0mBear    \e[0m");
 			show_text(150);
@@ -2455,6 +2459,7 @@ void chapter_6()
 {
 	if (subchapter == 0)
 	{
+		select_choice = 1;
 		draw(gui);
 		draw(woods_way);
 		sleep(2);
@@ -2511,12 +2516,13 @@ void chapter_6()
 		if(check_space())
 		{
 			//show_text(154);
+			select_choice = 1;
 			draw(gui);
 			draw(water_spirit);
 			printf("\e[4;94H\e[0m\e[38;2;0;238;255mWater Spirit \e[0m");
 			show_text(70);
 			subchapter = 5;
-			printf("\e[%d;%dH",25,93); // set cursor position (y,x)
+			printf("\e[%d;%dH",23,93); // set cursor position (y,x)
 			printf(">");
 		}
 	}
@@ -2525,8 +2531,6 @@ void chapter_6()
 		int old_choice = check_select_choice(5);
 		if (old_choice)
 		{
-			printf("\e[%d;%dH",23,93); // set cursor position (y,x)
-			printf(" ");
 			printf("\e[%d;%dH",22+old_choice,93); // set cursor position (y,x)
 			printf(" ");
 			printf("\e[%d;%dH",22+select_choice,93); // set cursor position (y,x)
@@ -2577,6 +2581,7 @@ void chapter_6()
 	}
 	else if(subchapter == 9)
 	{
+		select_choice = 1;
 		draw(cave_entrance);
 		show_text(68);
 		printf("\e[4;94H\e[0m\e[38;2;0;238;255m      \e[0m");
@@ -2709,6 +2714,7 @@ void chapter_7()
 	}
 	else if(subchapter == 7)
 	{
+		select_choice = 1;
 		draw(billy_sleep);
 		printf("\e[4;94H\e[0m\e[38;2;204;217;216m        \e[0m");
 		show_text(77);
@@ -2938,6 +2944,7 @@ void chapter_9()
 		printf("\e[4;94H\e[0m\e[38;2;204;217;216m        \e[0m");
 		draw(Ophelia_sleep);
 		show_text(86);
+		select_choice = 1;
 		printf("\e[%d;%dH",23,93); // set cursor position (y,x)
 		printf(">");
 		select_choice = 1;
@@ -3261,6 +3268,7 @@ void chapter_10()
 		}
 		else
 		{
+			select_choice = 1;
 			draw(gui);
 			draw(vampire_pull_sword);
 			sleep(2);
