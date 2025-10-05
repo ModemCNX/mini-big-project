@@ -1665,7 +1665,7 @@ void chapter_0(){
 		printf("\e[%d;%dH",19,10); // set cursor position (y,x)
 		printf(">");
 		
-		play_sound("Music/Just cant prove it");
+		play_sound("Music/BGM/Menu");
 	}
 	int old_choice = check_select_choice(2);
 	if (old_choice){
@@ -1691,6 +1691,7 @@ void chapter_1()
 		show_text(16);
 		subchapter = 1;
 		play_sound(0);  //stop play song
+		play_sound("Music/BGM/city");
 	}
 	else if(subchapter == 1)
 	{
@@ -1699,6 +1700,8 @@ void chapter_1()
 			draw(cab_man);
 			printf("\e[4;94H\e[0mNarator");
 			show_text(17);
+			play_sound(0);
+			play_sound("Music/BGM/cabman");
 			subchapter = 2;
 		}
 	}
