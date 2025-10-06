@@ -503,7 +503,7 @@ void make_text()
 
 	strcpy (text_data[120],"\e[7;94H\e[38;2;254;18;101mArghhhh..You.!!\e[0m");
 	
-	strcpy (text_data[121],"\e[7;94H\e[38;2;255;23;17mThat was easier\e[8;94HThan I thought.\e[0m\e[9;96H\e[38;2;255;204;30mHow did you come here?\e[0m\e[38;2;255;23;17mBilly asked me\e[11;94HTo come to you.\e[12;94HAs for you\e[13;94HYou must be Ophelia.\e[0m");
+	strcpy (text_data[121],"\e[7;94H\e[38;2;255;23;17mThat was easier\e[8;94HThan I thought.\e[0m\e[9;96H\e[38;2;255;204;30mHow did you come here?\e[0m\e[10;94H\e[38;2;255;23;17mBilly asked me\e[11;94HTo come to you.\e[12;94HAs for you\e[13;94HYou must be Ophelia.\e[0m");
 
 	strcpy (text_data[122],"\e[7;94HAfter that\e[8;94HYou and your friends\e[9;94HSurvived\e[10;94HAnd continued living.");
 	
@@ -1573,7 +1573,7 @@ void combat_progress(){
 					spawn(2.5,44+j,13+i,0,0,0,0,0);
 				}
 			}
-		}else if(combat_counter == 20 && combat_time >= 54.25){ 
+		}else if(combat_counter == 20 && combat_time >= 53){ 
 			combat_counter ++;
 			int i,j;
 			for(i=0;i<12;i++){
@@ -1584,7 +1584,7 @@ void combat_progress(){
 				spawn(0.5,43+i/16.5,13,-30+i*2,-11,0,0,0);
 				spawn(0.5,43+i/16.5,14,-30+i*2,11,0,0,0);
 			}
-		}else if(combat_counter == 21 && combat_time >= 60){ 
+		}else if(combat_counter == 21 && combat_time >= 56){ 
 			combat_counter ++;
 			win();
 		}
@@ -1900,7 +1900,7 @@ void chapter_2()
 		if(check_space())
 		{
 			play_sound(0);
-		//	play_sound("Music/Fight/fight1");
+			play_sound("Music/Fight/fight1");
 			subchapter = 7;
 			clear_text();
 			start_fight(1);
@@ -1910,7 +1910,7 @@ void chapter_2()
 	else if(subchapter == 7)
 	{
 		play_sound(0);
-		play_sound2("Music/Effect/punch");
+		play_sound2("Music/Effect/Windows Shutdown");
 		draw(lose_red_hair);
 		subchapter = 8;
 	}
@@ -1942,8 +1942,6 @@ void chapter_3()
 {
 	if (subchapter == 0)
 	{
-		play_sound(0);
-		play_sound("Music/BGM/village2");
 		draw(gui);
 		draw(roger_and_red_hair);
 		printf("\e[4;94H\e[0m\e[38;2;114;118;148mRoger  \e[0m");
@@ -2183,7 +2181,7 @@ void chapter_4()
 		subchapter = 5;
 		clear_text();
 		play_sound(0);
-		//play_sound2("Music/Fight/fight2");
+		play_sound2("Music/Fight/fight2");
 		start_fight(2);
 	}
 	else if (subchapter == 5)
@@ -2685,6 +2683,8 @@ void chapter_6()
 	} 
 	else if(subchapter == 2)
 	{
+		play_sound(0);
+		play_sound("Music/BGM/lake");
 		draw(water);
 		show_text(69);
 		printf("\e[4;94H\e[0m\e[38;2;114;118;148m       \e[0m");
@@ -2694,6 +2694,8 @@ void chapter_6()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound("Music/BGM/ws");
 			draw(water_spirit);
 			show_text(153);
 			printf("\e[4;94H\e[0m\e[38;2;0;238;255mWater Spirit \e[0m");
@@ -2745,6 +2747,8 @@ void chapter_6()
 	}
 	else if(subchapter == 6)
 	{
+		play_sound(0);
+		play_sound2("Music/Effect/Collect Item");
 		draw(water_spirit_give_holy_water);
 		show_text(72);
 		printf("\e[4;94H\e[0m\e[38;2;0;238;255mWater Spirit \e[0m");
@@ -2763,6 +2767,8 @@ void chapter_6()
 	}
 	else if(subchapter == 8)
 	{
+		play_sound(0);
+		play_sound("Music/BGM/lake");
 		draw(water);
 		show_text(71);
 		printf("\e[4;94H\e[0m\e[38;2;0;238;255m              \e[0m");
@@ -2833,12 +2839,16 @@ void chapter_7()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound("Music/BGM/cave");
 			draw(gui);
 			printf("\e[4;94H\e[0m\e[38;2;114;118;148m        \e[0m");
 			draw(cave_way2);
 			sleep(2);
 			draw(cave_way1);
 			sleep(1);
+			play_sound(0);
+			play_sound2("Music/Effect/Goon");
 			draw(goon);
 			subchapter = 2;
 			printf("\e[4;94H\e[0m\e[38;2;204;217;216mGhoul   \e[0m");
@@ -2849,6 +2859,8 @@ void chapter_7()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound2("Music/Fight/fight4");
 			subchapter = 4;
 			clear_text();
 			start_fight(4);
@@ -2856,6 +2868,8 @@ void chapter_7()
 	}
 	else if(subchapter == 3)
 	{
+		play_sound(0);
+		play_sound2("Music/Fight/fight4");
 		subchapter = 4;
 		draw(gui);
 		clear_text();
@@ -2876,14 +2890,20 @@ void chapter_7()
 	} 
 	else if(subchapter == 5) 
 	{
+		play_sound(0);
+		play_sound2("Music/Effect/Goon eat");
 		draw(lose_goon);
-		sleep(2);
+		sleep(3);
 		subchapter = 3;
 	}
 	else if(subchapter == 6) 
 	{
+		play_sound(0);
+		play_sound2("Music/Effect/slash goon");
 		draw(kill_goon);
 		sleep(2);
+		play_sound(0);
+		play_sound("Music/BGM/cave");
 		printf("\e[4;94H\e[0m\e[38;2;204;217;216m        \e[0m");
 		draw(gui);
 		draw(cave_way1);
@@ -2892,6 +2912,8 @@ void chapter_7()
 		sleep(1);
 		draw(cave_way1);
 		sleep(1);
+		play_sound(0);
+		play_sound2("Music/Effect/OH HELL NAH");
 		draw(billy_sleep);
 		if(holywater == 1) 
 		{
@@ -2904,6 +2926,8 @@ void chapter_7()
 	}
 	else if(subchapter == 7)
 	{
+		play_sound(0);
+		play_sound2("Music/Effect/OH HELL NAH");
 		select_choice = 1;
 		draw(billy_sleep);
 		printf("\e[4;94H\e[0m\e[38;2;204;217;216m        \e[0m");
@@ -2938,6 +2962,8 @@ void chapter_7()
 	}
 	else if(subchapter == 9)
 	{
+		play_sound(0);
+		play_sound2("Music/Effect/revive billy");
 		holywater = 2;
 		draw(billy_stand);
 		printf("\e[4;94H\e[0m\e[38;2;122;105;90m       \e[0m");
@@ -2948,6 +2974,8 @@ void chapter_7()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound("Music/BGM/cave");
 			draw(billy_stand);
 			printf("\e[4;94H\e[0m\e[38;2;122;105;90mBilly    \e[0m");
 			show_text(79);
@@ -2998,6 +3026,8 @@ void chapter_8()
 {
 	if (subchapter == 0)
 	{
+		play_sound(0);
+		play_sound("Music/BGM/cave");
 		draw(gui);
 		printf("\e[4;94H\e[0m\e[38;2;114;118;148m        \e[0m");
 		draw(cave_way2);
@@ -3040,6 +3070,8 @@ void chapter_8()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound2("Music/Fight/fight7");
 			clear_text();
 			start_fight(7);
 			subchapter = 5;
@@ -3066,11 +3098,16 @@ void chapter_8()
 	}
 	else if(subchapter == 6)
 	{
+		play_sound(0);
+		play_sound2("Music/Effect/Goon");
 		draw(gui);
 		clear_text();
 		printf("\e[4;94H\e[0m\e[38;2;204;217;216m        \e[0m");
 		draw(cave_body);
+		sleep(2);
 		show_text(84);
+		play_sound(0);
+		play_sound("Music/BGM/cave");
 		subchapter = 7;
 	}
 	else if(subchapter == 7)
@@ -3089,6 +3126,8 @@ void chapter_8()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound("Music/BGM/vampire house");
 			draw(gui);
 			clear_text();
 			printf("\e[4;94H\e[0m\e[38;2;204;217;216m        \e[0m");
@@ -3110,6 +3149,8 @@ void chapter_9()
 {
 	if (subchapter == 0)
 	{
+		play_sound(0);
+		play_sound("Music/BGM/vampire house");
 		draw(gui);
 		printf("\e[4;94H\e[0m\e[38;2;114;118;148m        \e[0m");
 		draw(vampire_house2);
@@ -3287,6 +3328,8 @@ void chapter_9()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound2("Music/Effect/vampire back");
 			draw(gui);
 			clear_text();
 			printf("\e[4;94H\e[0m\e[38;2;0;255;29m           \e[0m");
@@ -3299,9 +3342,13 @@ void chapter_9()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound2("Music/Effect/slash");
 			clear_text();
 			draw(battle_vampire);
 			sleep(2);
+			play_sound(0);
+			play_sound("Music/BGM/vampire theme");
 			draw(gui);
 			draw(vampire_T_pose);
 			printf("\e[4;94H\e[0m\e[38;2;254;18;101mVampire\e[0m");
@@ -3331,6 +3378,8 @@ void chapter_9()
 			printf("\e[4;94H\e[0m\e[38;2;254;18;101m         \e[0m");
 			draw(table2);
 			sleep(1);
+			play_sound(0);
+			play_sound2("Music/Effect/vampire back");
 			draw(vampire_behide_you);
 			printf("\e[4;94H\e[0m\e[38;2;254;18;101mVampire\e[0m");
 			show_text(100);
@@ -3343,7 +3392,11 @@ void chapter_9()
 		{
 			clear_text();
 			draw(battle_vampire);
+			play_sound(0);
+			play_sound2("Music/Effect/slash");
 			sleep(2);
+			play_sound(0);
+			play_sound("Music/BGM/vampire theme");
 			draw(gui);
 			draw(vampire_T_pose);
 			printf("\e[4;94H\e[0m\e[38;2;254;18;101mVampire\e[0m");
@@ -3412,10 +3465,12 @@ void chapter_9()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound2("Music/Effect/vampire back");
 			clear_text();
 			draw(gui);
 			draw(vampire_behide_you);
-			printf("\e[4;94H\e[0m\e[38;2;0;255;29mOphelia\e[0m");
+			printf("\e[4;94H\e[0m\e[38;2;0;255;29m         \e[0m");
 			show_text(107);
 			subchapter = 14;
 		}
@@ -3426,6 +3481,8 @@ void chapter_10()
 {
 	if(subchapter == 0)
 	{
+		play_sound(0);
+		play_sound2("Music/Fight/fight5");
 		clear_text();
 		start_fight(5);
 		subchapter = 1;
@@ -3434,12 +3491,16 @@ void chapter_10()
 	{
 		if(last_fight_result == 1)
 		{
+			play_sound(0);
+			play_sound2("Music/Effect/slash goon");
 			draw(kill_vampire);
 			sleep(2);
 			subchapter = 2;
 		}
 		else if(last_fight_result == 0)
 		{    
+			play_sound(0);
+			play_sound2("Music/Effect/vampire stab");
 			clear_text();
 			draw(kill_you);
 			sleep(2);
@@ -3453,6 +3514,8 @@ void chapter_10()
 			draw(gui);
 			draw(vampire_pull_sword);
 			sleep(2);
+			play_sound(0);
+			play_sound2("Music/Effect/blood");
 			draw(vampire_hold_sword);
 			printf("\e[4;94H\e[0m\e[38;2;254;18;101mVampire\e[0m");
 			show_text(109);
@@ -3464,7 +3527,10 @@ void chapter_10()
 			draw(gui);
 			draw(vampire_pull_sword);
 			sleep(2);
+			play_sound(0);
+			play_sound2("Music/Effect/blood");
 			draw(vampire_hold_sword);
+			printf("\e[4;94H\e[0m\e[38;2;254;18;101mVampire\e[0m");
 			show_text(112);
 			printf("\e[%d;%dH",23,93); // set cursor position (y,x)
 			printf(">");
@@ -3481,8 +3547,10 @@ void chapter_10()
 			animation_time = 0;
 			animation_counter = 0;
 			clear_text();
+			play_sound(0);
+			play_sound2("Music/Effect/ash");
 			draw(you_shoot1);
-			sleep(2);
+			sleep(1);
 			draw(you_shoot2);
 			sleep(1);
 			draw(gui);
@@ -3493,7 +3561,7 @@ void chapter_10()
 		
 	} 
 	else if(subchapter == 4)
-	{
+	{	
 		animation_time += delta_time;
 		if(animation_counter == 0 && animation_time >= 0.5)
 		{
@@ -3539,10 +3607,12 @@ void chapter_10()
 		else if(animation_counter == 8 && animation_time >= 4.5) 
 		{
 			animation_counter ++;
+			play_sound(0);
+			play_sound("Music/BGM/end2");
 			draw(Ophelia_awake);
 			show_text(111);
 		}
-		else if(animation_counter == 9 && animation_time >= 10)
+		else if(animation_counter == 9 && animation_time >= 8.5)
 		{
 			animation_counter ++;
 			draw(end_1);
@@ -3578,10 +3648,12 @@ void chapter_10()
 			}
 		}	
 	}
-	else if(subchapter == 6)
+	else if(subchapter == 6) // be vampire
 	{
+		play_sound(0);
+		play_sound("Music/BGM/end2"); //end
 		draw(gui);
-		draw(vampire_hold_sword);
+		draw(vampire_hold_sword); 
 		printf("\e[4;94H\e[0m\e[38;2;254;18;101mVampire  \e[0m");
 		show_text(123);
 		subchapter = 7;
@@ -3598,12 +3670,16 @@ void chapter_10()
 	{
 		if(garlic == 1)
 		{
+			play_sound(0);
+			play_sound("Music/Fight/fight6");
 			clear_text();
 			start_fight(6);
 			subchapter = 9;
 		}
 		else if(garlic == 0)
 		{
+			play_sound(0);
+			play_sound2("Music/Effect/vampire stab");
 			clear_text();
 			draw(kill_you_blood);
 			sleep(2);
@@ -3614,6 +3690,8 @@ void chapter_10()
 	{
 		if(last_fight_result == 1)
 		{
+			play_sound(0);
+			play_sound2("Music/Effect/vampire stab");
 			printf("\e[4;94H\e[0m\e[38;2;254;18;101mVampire  \e[0m");
 			show_text(158);
 			draw(vampire_eat);
@@ -3621,7 +3699,9 @@ void chapter_10()
 			subchapter = 10;
 		}
 		else if(last_fight_result == 0)
-		{    
+		{
+			play_sound(0);
+			play_sound2("Music/Effect/vampire stab");
 			clear_text();
 			draw(kill_you_blood);
 			sleep(2);
@@ -3632,6 +3712,8 @@ void chapter_10()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound("Music/BGM/end2"); //end
 			draw(gui);
 			printf("\e[4;94H\e[0m\e[38;2;122;105;90m       \e[0m");
 			show_text(116);
@@ -3663,6 +3745,8 @@ void chapter_10()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound("Music/BGM/vampire theme");
 			if(holywater == 2)
 			{
 				draw(gui);
@@ -3704,92 +3788,102 @@ void chapter_10()
 	else if(subchapter == 16)
 	{
 		animation_time += delta_time;
-		if(animation_counter == 0 && animation_time >= 1)
+		if(animation_counter == 0 && animation_time >= 0.5)
 		{
+			play_sound(0);
+			play_sound2("Music/Effect/jim shoot");
 			animation_counter ++;
 			draw(jim_behide);
 		}
-		else if(animation_counter == 1 && animation_time >= 1.5) 
+		else if(animation_counter == 1 && animation_time >= 1) 
 		{
 			animation_counter ++;
 			draw(jim_shoot1);
 		}
-		else if(animation_counter == 2 && animation_time >= 2) 
+		else if(animation_counter == 2 && animation_time >= 1.5) 
 		{
 			animation_counter ++;
 			draw(jim_shoot2);
 		}
-		else if(animation_counter == 3 && animation_time >= 2.5) 
+		else if(animation_counter == 3 && animation_time >= 2) 
 		{
 			animation_counter ++;
 			draw(jim_shoot3);
 		}
-		else if(animation_counter == 4 && animation_time >= 3) 
+		else if(animation_counter == 4 && animation_time >= 2.5) 
 		{
+			play_sound(0);
+			play_sound2("Music/Effect/noooo!");
 			animation_counter ++;
 			draw(gui);
 			show_text(120);
 			draw(vampire_gone1);
 		} 
-		else if(animation_counter == 5 && animation_time >= 3.5) 
+		else if(animation_counter == 5 && animation_time >= 3) 
 		{
 			animation_counter ++;
 			draw(vampire_gone2);
 		}
-		else if(animation_counter == 6 && animation_time >= 4) 
+		else if(animation_counter == 6 && animation_time >= 3.5) 
 		{
 			animation_counter ++;
 			draw(vampire_gone3);
 		}
-		else if(animation_counter == 7 && animation_time >= 4.5) 
+		else if(animation_counter == 7 && animation_time >= 4) 
 		{
 			animation_counter ++;
 			draw(vampire_gone4);
 		}
-		else if(animation_counter == 8 && animation_time >= 5) 
+		else if(animation_counter == 8 && animation_time >= 4.5) 
 		{
 			animation_counter ++;
 			draw(vampire_gone5);
 		}
-		else if(animation_counter == 9 && animation_time >= 5.5) 
+		else if(animation_counter == 9 && animation_time >= 5) 
 		{
 			animation_counter ++;
 			draw(vampire_gone6);
 		}
-		else if(animation_counter == 10 && animation_time >= 6) 
+		else if(animation_counter == 10 && animation_time >= 5.5) 
 		{
 			animation_counter ++;
 			draw(vampire_gone7);
 		}
-		else if(animation_counter == 11 && animation_time >= 6.5) 
+		else if(animation_counter == 11 && animation_time >= 6) 
 		{
 			animation_counter ++;
 			draw(vampire_gone8);
 		}
-		else if(animation_counter == 12 && animation_time >= 7) 
+		else if(animation_counter == 12 && animation_time >= 6.5) 
 		{
 			animation_counter ++;
 			draw(vampire_gone9);
 		}
-		else if(animation_counter == 13 && animation_time >= 7.5) 
+		else if(animation_counter == 13 && animation_time >= 7) 
 		{
+			play_sound(0);
+			play_sound("Music/BGM/end2"); //end
 			animation_counter ++;
+			printf("\e[4;94H\e[0m\e[38;2;255;23;17mJim     \e[0m");
 			draw(jim_vampire_house);
 			show_text(121);
 		}
-		else if(animation_counter == 14 && animation_time >= 16)
+		else if(animation_counter == 14 && animation_time >= 15.5)
 		{
+			printf("\e[4;94H\e[0m\e[38;2;255;23;17m        \e[0m");
 			animation_counter ++;
 			draw(end_1);
 			show_text(122);
 		} 
-		else if(animation_counter == 15 && animation_time >= 24)
+		else if(animation_counter == 15 && animation_time >= 23.5)
 		{
 			change_chapter(11);
 		} 
 	}
 	else if(subchapter == 17)
 	{
+		play_sound(0);
+		play_sound("Music/BGM/vampire theme");
 		if(holywater == 2)
 		{
 			draw(gui);
