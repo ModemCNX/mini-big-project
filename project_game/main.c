@@ -389,7 +389,7 @@ void make_text()
 
 	strcpy (text_data[64],"\e[7;111H\e[38;2;255;204;30mOH shit\e[0m"); 
 	
-	strcpy (text_data[65],"\e[7;94H\e[38;2;121;4;0mYou almost died\e[8;94HOn the first day\e[9;94HDid you bring a sword?\e[0m");
+	strcpy (text_data[65],"\e[7;94H\e[38;2;255;23;17mYou almost died\e[8;94HOn the first day\e[9;94HDid you bring a sword?\e[0m");
 	
 	strcpy (text_data[66],"\e[7;114H\e[38;2;255;204;30mOkay\e[8;100HThat's all for now\e[9;106HI'm going to\e[10;100HContinue exploring\e[11;95HThe forest around here.\e[0m"); 
 
@@ -1731,6 +1731,8 @@ void chapter_2()
 		draw(roger_village);
 		printf("\e[4;94H\e[0m\e[38;2;114;118;148mRoger  \e[0m");
 		show_text(19);
+		play_sound(0);
+		play_sound("Music/BGM/village1");
 		subchapter = 2;
 	}
 	else if(subchapter == 2)
@@ -1773,6 +1775,8 @@ void chapter_2()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+		//	play_sound("Music/Fight/fight1");
 			subchapter = 7;
 			clear_text();
 			start_fight(1);
@@ -1781,12 +1785,16 @@ void chapter_2()
 	}
 	else if(subchapter == 7)
 	{
+		play_sound(0);
+		play_sound2("Music/Effect/punch");
 		draw(lose_red_hair);
 		subchapter = 8;
 	}
 	else if(subchapter == 8)
 	{	
 		sleep(3);
+		play_sound(0);
+		play_sound("Music/BGM/village2");
 		draw(gui);
 		draw(red_hair_quest_board);
 		subchapter = 9;
@@ -1810,6 +1818,8 @@ void chapter_3()
 {
 	if (subchapter == 0)
 	{
+		play_sound(0);
+		play_sound("Music/BGM/village2");
 		draw(gui);
 		draw(roger_and_red_hair);
 		printf("\e[4;94H\e[0m\e[38;2;114;118;148mRoger  \e[0m");
@@ -1952,8 +1962,12 @@ void chapter_3()
 	} 
 	else if(subchapter == 13)
 	{
+		play_sound(0);
+		play_sound2("Music/Effect/close-door");
 		draw(closed_pen);
 		sleep(2);
+		play_sound(0);
+		play_sound("Music/BGM/village2");
 		draw(copper_closed_pen);
 		printf("\e[4;94H\e[0m\e[38;2;236;254;132mCopper    \e[0m");
 		show_text(37);
@@ -1961,8 +1975,11 @@ void chapter_3()
 	}  
 	else if(subchapter == 14)
 	{
+		
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound2("Music/Effect/Collect Item");
 			draw(copper_give_garlic);
 			printf("\e[4;94H\e[0m\e[38;2;236;254;132mCopper    \e[0m");
 			show_text(38);
@@ -1974,6 +1991,8 @@ void chapter_3()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound("Music/BGM/village2");
 			change_chapter(4);
 		}
 	} 
@@ -2037,6 +2056,8 @@ void chapter_4()
 	{
 		subchapter = 5;
 		clear_text();
+		play_sound(0);
+		//play_sound2("Music/Fight/fight2");
 		start_fight(2);
 	}
 	else if (subchapter == 5)
@@ -2053,12 +2074,16 @@ void chapter_4()
 	}
 	else if(subchapter == 6)
 	{
+		play_sound(0);
+		play_sound2("Music/Effect/punch");
 		draw(lose_red_hair);
 		subchapter = 7;
 	}
 	else if(subchapter == 7)
 	{	
 		sleep(2);
+		play_sound(0);
+		play_sound("Music/BGM/village2");
 		draw(gui);
 		draw(red_hair_quest_board);
 		printf("\e[4;94H\e[0m\e[38;2;185;80;80mLodern      \e[0m");
@@ -2095,8 +2120,12 @@ void chapter_4()
 	} 
 	else if(subchapter == 9)
 	{
+		play_sound(0);
+		play_sound2("Music/Effect/punch");
 		draw(punch_red_hair);
 		sleep(2);
+		play_sound(0);
+		play_sound("Music/BGM/village2");
 		draw(gui);
 		draw(red_hair_quest_board);
 		printf("\e[4;94H\e[0m\e[38;2;185;80;80mLodern      \e[0m");
@@ -2128,6 +2157,8 @@ void chapter_4()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound("Music/BGM/ophelia story");
 			knowOphelia = 1;
 			draw(Ophelia_paper);
 			printf("\e[4;94H\e[0m\e[38;2;114;118;148mRoger   \e[0m");
@@ -2178,6 +2209,8 @@ void chapter_5()
 {
 	if (subchapter == 0)
 	{
+		play_sound(0);
+		play_sound("Music/BGM/forest");
 		draw(gui);
 		draw(woods_way);
 		printf("\e[4;94H\e[0m\e[38;2;114;118;148m       \e[0m");
@@ -2189,6 +2222,8 @@ void chapter_5()
 		if(check_space())
 		{
 			select_choice = 1;
+			play_sound(0);
+			play_sound("Music/BGM/Bear");
 			draw(bear_wood_way);
 			printf("\e[4;94H\e[0m\e[38;2;159;75;0mBear    \e[0m");
 			show_text(150);
@@ -2235,6 +2270,8 @@ void chapter_5()
 		{
 			subchapter = 5;	
 			clear_text();
+			play_sound(0);
+			play_sound2("Music/Fight/fight3");
 			start_fight(3);
 		}
 	}
@@ -2250,8 +2287,12 @@ void chapter_5()
 	}
 	else if (subchapter == 6)
 	{
+		play_sound(0);
+		play_sound2("Music/Effect/slash bear");
 		draw(kill_bear);
 		sleep(2);
+		play_sound(0);
+		play_sound("Music/BGM/village2");
 		draw(gui);
 		draw(bear_zoro_sleep_home);
 		printf("\e[4;94H\e[0m\e[38;2;114;118;148m       \e[0m");
@@ -2320,7 +2361,8 @@ void chapter_5()
 	}
 	else if(subchapter == 13)
 	{
-		
+		play_sound(0);
+		play_sound("Music/BGM/Bear");
 		draw(gui);
 		draw(bear_wood_way);
 		printf("\e[4;94H\e[0m\e[38;2;159;75;0mBear    \e[0m");
@@ -2331,12 +2373,16 @@ void chapter_5()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound("Music/BGM/run bear");
 			draw(run_from_bear1);
 			sleep(2);
 			draw(run_from_bear2);
 			sleep(2);
 			draw(walk_on_banana);
 			sleep(2);
+			play_sound(0);
+			play_sound2("Music/Effect/Slip");
 			draw(fail);
 			sleep(2);
 			draw(gui);
@@ -2350,6 +2396,8 @@ void chapter_5()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound2("Music/Effect/jim shoot bear");
 			draw(bear_donut_stand_home);
 			sleep(1);
 			draw(bear_donut_sleep_home);
@@ -2361,6 +2409,8 @@ void chapter_5()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound("Music/BGM/village2");
 			draw(jim_bear_donut_sleep_home);
 			printf("\e[4;94H\e[0m\e[38;2;255;23;17mJim     \e[0m");
 			show_text(65);
@@ -2371,6 +2421,8 @@ void chapter_5()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound("Music/BGM/helena house");
 			draw(helena1);
 			printf("\e[4;94H\e[0m\e[38;2;62;129;165mHelena    \e[0m");
 			show_text(59);
@@ -2433,6 +2485,8 @@ void chapter_5()
 		{
 			draw(helena_heal2);
 			sleep(1);
+			play_sound(0);
+			play_sound2("Music/Effect/tom yelp");
 			draw(gui);
 			draw(home_of_helena);
 			printf("\e[4;94H\e[0m\e[38;2;62;129;165mHelena    \e[0m");
@@ -2443,6 +2497,8 @@ void chapter_5()
 	{
 		if(check_space())
 		{
+			play_sound(0);
+			play_sound("Music/BGM/village2");
 			draw(helena_home_of_helena);
 			printf("\e[4;94H\e[0m\e[38;2;62;129;165mHelena    \e[0m");
 			show_text(66);
@@ -2462,6 +2518,8 @@ void chapter_6()
 {
 	if (subchapter == 0)
 	{
+		play_sound(0);
+		play_sound("Music/BGM/forest");
 		select_choice = 1;
 		draw(gui);
 		draw(woods_way);
@@ -3637,7 +3695,7 @@ void game_progress(){    // call every tick
 	}
 	else if (chapter == 0)
 	{
-		chapter_0();
+		chapter_5();
 	}
 	else if (chapter == 1)
 	{
