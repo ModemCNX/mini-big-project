@@ -5,7 +5,7 @@
 #include <math.h>
 
 //variable that NOT gonna change by player ( system variable )
-char version[] = "1.2.6";
+char version[] = "1.2.7";
 
 int w=0,a=0,s=0,d=0,space=0,n0=0,n1=0,n2=0,n3=0,n4=0,n5=0,n6=0,n7=0,n8=0,n9=0,back_space=0; // user input flag
 
@@ -1709,7 +1709,7 @@ void input_chapter_code(){
 void show_chapter_code(){
 	printf("\e[%d;%dH",29,102); // set cursor position (y,x)
 	snprintf(chapter_code, sizeof(chapter_code), "%d%d%d%d", chapter,garlic,knowOphelia,holywater);
-	printf("chapter code:%s", chapter_code);
+	printf("\e[0mchapter code:%s", chapter_code);
 }
 
 void chapter_0(){
@@ -1724,6 +1724,8 @@ void chapter_0(){
 		printf("\e[2m\e[1mchapter teleport\e[0m");
 		printf("\e[%d;%dH",21,12); // set cursor position (y,x)
 		printf("\e[2m\e[1mexit\e[0m");
+		printf("\e[%d;%dH",30,1); // set cursor position (y,x)
+		printf("\e[2m\e[1mversion:%s\e[0m",version);
 		
 		printf("\e[%d;%dH",19,10); // set cursor position (y,x)
 		printf(">");
