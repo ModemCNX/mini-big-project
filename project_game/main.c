@@ -437,7 +437,7 @@ void make_text()
 
 	strcpy (text_data[87],"\e[7;105H\e[38;2;255;204;30mHey! wake up."); 
 
-	strcpy (text_data[88],"\e[7;94H\e[38;2;0;255;29mOh my god\e[8;94HI haven't seen anyone\e[9;94HIn a long time.\e[0m\e[10;102H\e[38;2;255;204;30mWhat do you mean\e[11;100HAre you a monster?\e[0m\e[12;94H\e[38;2;0;255;29mNo\e[13;94HI was captured\e[9;94Hand brought here.\e[14;94HMy name's Ophelia.\e[0m");
+	strcpy (text_data[88],"\e[7;94H\e[38;2;0;255;29mOh my god\e[8;94HI haven't seen anyone\e[9;94HIn a long time.\e[0m\e[10;102H\e[38;2;255;204;30mWhat do you mean\e[11;100HAre you a monster?\e[0m\e[12;94H\e[38;2;0;255;29mNo\e[13;94HI was captured\e[14;94Hand brought here.\e[15;94HMy name's Ophelia.\e[0m");
 
 	strcpy (text_data[89],"\e[7;94H\e[38;2;0;255;29mTwo month ago.\e[8;94HMy group and I\e[9;94HWere exploring\e[10;94HThis forest\e[11;94HBut suddenly.\e[12;94HShe was attacked\e[13;94HBy a monster.\e[14;94HIt was ordered\e[15;94HBy vampires.\e[16;94HTo capture the girl.\e[0m");
 
@@ -1730,6 +1730,7 @@ void chapter_0(){
 		printf("\e[%d;%dH",19,10); // set cursor position (y,x)
 		printf(">");
 		
+		play_sound(0);
 		play_sound("Music/BGM/Menu");
 	}
 	else if(subchapter == 1)
@@ -1942,6 +1943,8 @@ void chapter_3()
 {
 	if (subchapter == 0)
 	{
+		play_sound(0);
+		play_sound("Music/BGM/village2");
 		draw(gui);
 		draw(roger_and_red_hair);
 		printf("\e[4;94H\e[0m\e[38;2;114;118;148mRoger  \e[0m");
@@ -2126,6 +2129,8 @@ void chapter_4()
 {
 	if (subchapter == 0)
 	{
+		play_sound(0);
+		play_sound("Music/BGM/village2");
 		draw(gui);
 		draw(home);
 		subchapter = 1;
@@ -3908,8 +3913,19 @@ void chapter_11()
 {
 	if(subchapter == 0)
 	{
+		play_sound(0);
+		play_sound("Music/BGM/END");
 		clear_text();
-		change_chapter(0);
+		draw(gui);
+		subchapter = 1;
+	}
+	if(subchapter == 1)
+	{
+		if(check_space())
+		{
+			clear_text();
+			change_chapter(0);
+		}
 	}
 }
 
