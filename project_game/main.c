@@ -7,7 +7,7 @@
 //variable that NOT gonna change by player ( system variable )
 char version[] = "1.2.6";
 
-int w=0,a=0,s=0,d=0,space=0; // user input flag
+int w=0,a=0,s=0,d=0,space=0,n0=0,n1=0,n2=0,n3=0,n4=0,n5=0,n6=0,n7=0,n8=0,n9=0,back_space=0; // user input flag
 
 float eee=0; // for debug
 
@@ -59,6 +59,8 @@ float move_time_delay_y = 0.15;
 int chapter = 0;
 int subchapter = 0;
 int select_choice = 1;
+float chapter_teleport_time = 0;
+char chapter_code[7] = "";
 
 int knowOphelia = 0;
 int garlic = 0;
@@ -671,13 +673,27 @@ void play_sound2(char sound_data[]) {
 
 // update function
 
+
 void update_input(){
 	w = GetAsyncKeyState('W')!=0||GetAsyncKeyState(0x26)!=0?1:0;
 	a = GetAsyncKeyState('A')!=0||GetAsyncKeyState(0x25)!=0?1:0;
 	s = GetAsyncKeyState('S')!=0||GetAsyncKeyState(0x28)!=0?1:0;
 	d = GetAsyncKeyState('D')!=0||GetAsyncKeyState(0x27)!=0?1:0;
 	space = GetAsyncKeyState(0x20)!=0?1:0;
+	
+	n0 = GetAsyncKeyState('0')!=0||GetAsyncKeyState(0x60)!=0?1:0;
+	n1 = GetAsyncKeyState('1')!=0||GetAsyncKeyState(0x61)!=0?1:0;
+	n2 = GetAsyncKeyState('2')!=0||GetAsyncKeyState(0x62)!=0?1:0;
+	n3 = GetAsyncKeyState('3')!=0||GetAsyncKeyState(0x63)!=0?1:0;
+	n4 = GetAsyncKeyState('4')!=0||GetAsyncKeyState(0x64)!=0?1:0;
+	n5 = GetAsyncKeyState('5')!=0||GetAsyncKeyState(0x65)!=0?1:0;
+	n6 = GetAsyncKeyState('6')!=0||GetAsyncKeyState(0x66)!=0?1:0;
+	n7 = GetAsyncKeyState('7')!=0||GetAsyncKeyState(0x67)!=0?1:0;
+	n8 = GetAsyncKeyState('8')!=0||GetAsyncKeyState(0x68)!=0?1:0;
+	n9 = GetAsyncKeyState('9')!=0||GetAsyncKeyState(0x69)!=0?1:0;
+	back_space = GetAsyncKeyState(0x08)!=0?1:0;
 }
+
 
 
 void update_game_time(float *game_time){
@@ -1650,6 +1666,51 @@ void change_chapter(int target_chapter){
 	chapter = target_chapter;
 }
 
+void input_chapter_code(){
+	char num_input[1] = " ";
+	if(back_space){
+		num_input[0] = 'e';
+	}else if(n0){
+		num_input[0] = '0';
+	}else if(n1){
+		num_input[0] = '1';
+	}else if(n2){
+		num_input[0] = '2';
+	}else if(n3){
+		num_input[0] = '3';
+	}else if(n4){
+		num_input[0] = '4';
+	}else if(n5){
+		num_input[0] = '5';
+	}else if(n6){
+		num_input[0] = '6';
+	}else if(n7){
+		num_input[0] = '7';
+	}else if(n8){
+		num_input[0] = '8';
+	}else if(n9){
+		num_input[0] = '9';
+	}
+	if (num_input[0]!= ' ' && game_time > chapter_teleport_time + 0.2 && (strlen(chapter_code) < 4 || num_input[0] == 'e')){
+			chapter_teleport_time = game_time;
+			if(num_input[0] == 'e'){
+				chapter_code[strlen(chapter_code)-1] = '\0';
+			}else{
+				strncat(chapter_code,num_input,1);
+			}
+			
+			printf("\e[%d;%dH",19,12); // set cursor position (y,x)
+			printf("\e[2m\e[1m____\e[0m");
+			printf("\e[%d;%dH",19,12); // set cursor position (y,x)
+			printf("\e[2m\e[1m%s\e[0m",chapter_code);
+		}
+}
+
+void show_chapter_code(){
+	printf("\e[%d;%dH",29,102); // set cursor position (y,x)
+	snprintf(chapter_code, sizeof(chapter_code), "%d%d%d%d", chapter,garlic,knowOphelia,holywater);
+	printf("chapter code:%s", chapter_code);
+}
 
 void chapter_0(){
 	if (subchapter == 0){
@@ -1661,25 +1722,73 @@ void chapter_0(){
 		printf("\e[2m\e[1mstart\e[0m");
 		printf("\e[%d;%dH",20,12); // set cursor position (y,x)
 		printf("\e[2m\e[1mchapter teleport\e[0m");
+		printf("\e[%d;%dH",21,12); // set cursor position (y,x)
+		printf("\e[2m\e[1mexit\e[0m");
 		
 		printf("\e[%d;%dH",19,10); // set cursor position (y,x)
 		printf(">");
 		
 		play_sound("Music/BGM/Menu");
 	}
-	int old_choice = check_select_choice(2);
-	if (old_choice){
-		printf("\e[%d;%dH",18+old_choice,10); // set cursor position (y,x)
-		printf(" ");
-		printf("\e[%d;%dH",18+select_choice,10); // set cursor position (y,x)
-		printf(">");
-	}
-	if (check_space()){
-		if (select_choice == 1){
-			change_chapter(1);
+	else if(subchapter == 1)
+	{
+		int old_choice = check_select_choice(3);
+		if (old_choice){
+			printf("\e[%d;%dH",18+old_choice,10); // set cursor position (y,x)
+			printf(" ");
+			printf("\e[%d;%dH",18+select_choice,10); // set cursor position (y,x)
+			printf(">");
+		}
+		if (check_space()){
+			if (select_choice == 1){
+				change_chapter(1);
+			}else if (select_choice == 2){
+				strcpy(chapter_code,"");
+				printf("\e[%d;%dH",18,10); // set cursor position (y,x)
+				printf("\e[3m\e[1mType Chapter code\e[0m");
+				printf("\e[%d;%dH",18+select_choice,10); // set cursor position (y,x)
+				printf(" ");
+				printf("\e[%d;%dH",19,10); // set cursor position (y,x)
+				printf(">\e[2m\e[1m ____ \e[0m");
+				printf("\e[%d;%dH",20,12); // set cursor position (y,x)
+				printf("\e[2m\e[1mconfirm                \e[0m");
+				printf("\e[%d;%dH",21,12); // set cursor position (y,x)
+				printf("\e[2m\e[1mback    \e[0m");
+				
+				select_choice = 1;
+				subchapter = 2;
+			}else if (select_choice == 3){
+				change_chapter(-1);
+				printf("\e[1;1H\e[2J\e[1;1H\e[3J"); // clear screen & clear scroll up	
+			}
+		}
+	}else if(subchapter == 2){
+		int old_choice = check_select_choice(3);
+		if (old_choice){
+			printf("\e[%d;%dH",18+old_choice,10); // set cursor position (y,x)
+			printf(" ");
+			printf("\e[%d;%dH",18+select_choice,10); // set cursor position (y,x)
+			printf(">");
+		}
+		if(select_choice == 1){ // type chapter code
+			input_chapter_code();
+		}
+		if (check_space()){
+			if (select_choice == 2){
+				change_chapter((chapter_code[0] - '0'));
+				garlic = (chapter_code[1] - '0');
+				knowOphelia = (chapter_code[2] - '0');
+				holywater = (chapter_code[3] - '0');
+				strcpy(chapter_code,"");
+			}else if (select_choice == 3){
+				select_choice = 1;
+				subchapter = 0;
+				strcpy(chapter_code,"");
+			}
 		}
 	}
 }
+
 
 void chapter_1()
 {
@@ -1692,6 +1801,8 @@ void chapter_1()
 		subchapter = 1;
 		play_sound(0);  //stop play song
 		play_sound("Music/BGM/city");
+		
+		show_chapter_code();
 	}
 	else if(subchapter == 1)
 	{
@@ -1734,6 +1845,8 @@ void chapter_2()
 		play_sound(0);
 		play_sound("Music/BGM/village1");
 		subchapter = 2;
+		
+		show_chapter_code();
 	}
 	else if(subchapter == 2)
 	{
@@ -1825,6 +1938,7 @@ void chapter_3()
 		printf("\e[4;94H\e[0m\e[38;2;114;118;148mRoger  \e[0m");
 		show_text(25);
 		subchapter = 1;
+		show_chapter_code();
 	}
 	else if(subchapter == 1)
 	{
@@ -2011,6 +2125,7 @@ void chapter_4()
 		select_choice = 1;
 		printf("\e[%d;%dH",23,93); // set cursor position (y,x)
 		printf(">");
+		show_chapter_code();
 	}
 	else if (subchapter == 1)
 	{
@@ -2216,6 +2331,7 @@ void chapter_5()
 		printf("\e[4;94H\e[0m\e[38;2;114;118;148m       \e[0m");
 		show_text(50);
 		subchapter = 1;
+		show_chapter_code();
 	}
 	else if(subchapter == 1)
 	{
@@ -2530,6 +2646,7 @@ void chapter_6()
 		subchapter = 1;
 		printf("\e[%d;%dH",23,93); // set cursor position (y,x)
 		printf(">");
+		show_chapter_code();
 	}
 	else if (subchapter == 1)
 	{
@@ -2699,6 +2816,7 @@ void chapter_7()
 		subchapter = 1;
 		printf("\e[4;94H\e[0m\e[38;2;114;118;148m        \e[0m");
 		show_text(74);
+		show_chapter_code();
 	}
 	else if(subchapter == 1)
 	{
@@ -2881,6 +2999,7 @@ void chapter_8()
 		sleep(1);
 		show_text(82);
 		subchapter = 1;
+		show_chapter_code();
 	}
 	else if(subchapter == 1)
 	{
@@ -2986,6 +3105,7 @@ void chapter_9()
 		sleep(1);
 		draw(Ophelia_sleep);
 		subchapter = 1;
+		show_chapter_code();
 	}
 	else if(subchapter == 1)
 	{
@@ -3695,7 +3815,7 @@ void game_progress(){    // call every tick
 	}
 	else if (chapter == 0)
 	{
-		chapter_5();
+		chapter_0();
 	}
 	else if (chapter == 1)
 	{
@@ -3747,7 +3867,7 @@ void game_progress(){    // call every tick
 //main bruh
 void main(){
 	start_setup();
-	while (1){ // game loop
+	while (chapter != -1){ // game loop
 		update_game();
 		display_var();  // for debug only
 		game_progress();
