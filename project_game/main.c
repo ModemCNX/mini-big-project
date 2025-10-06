@@ -1725,7 +1725,7 @@ void chapter_0(){
 		printf("\e[%d;%dH",21,12); // set cursor position (y,x)
 		printf("\e[2m\e[1mexit\e[0m");
 		printf("\e[%d;%dH",30,1); // set cursor position (y,x)
-		printf("\e[2m\e[1mversion:%s\e[0m",version);
+		printf("\e[2m\e[1mversion %s\e[0m",version);
 		
 		printf("\e[%d;%dH",19,10); // set cursor position (y,x)
 		printf(">");
