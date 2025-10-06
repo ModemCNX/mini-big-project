@@ -1775,11 +1775,20 @@ void chapter_0(){
 		}
 		if (check_space()){
 			if (select_choice == 2){
-				change_chapter((chapter_code[0] - '0'));
-				garlic = (chapter_code[1] - '0');
-				knowOphelia = (chapter_code[2] - '0');
-				holywater = (chapter_code[3] - '0');
+				int valid_chapter[] = {1000,2000,3000,4000,4100,5000,5100,5010,5110,6000,6100,6010,6110,7000,7100,7010,7001,7110,7011,7101,7111,8000,8100,8010,8001,8002,8101,8102,8110,8011,8012,8111,8112,9000,9100,9010,9001,9002,9101,9102,9110,9011,9012,9111,9112};
+				int i;
+				for(i=0;i<sizeof(valid_chapter)/sizeof(valid_chapter[0]);i++){
+					if(atoi(chapter_code) == valid_chapter[i]){
+						change_chapter((chapter_code[0] - '0'));
+						garlic = (chapter_code[1] - '0');
+						knowOphelia = (chapter_code[2] - '0');
+						holywater = (chapter_code[3] - '0');
+						break;
+					}
+				}
 				strcpy(chapter_code,"");
+				printf("\e[%d;%dH",19,12); // set cursor position (y,x)
+				printf("\e[2m\e[1m____\e[0m");
 			}else if (select_choice == 3){
 				select_choice = 1;
 				subchapter = 0;
