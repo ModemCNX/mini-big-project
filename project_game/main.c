@@ -5,7 +5,7 @@
 #include <math.h>
 
 //variable that NOT gonna change by player ( system variable )
-char version[] = "1.3.2";
+char version[] = "1.3.3";
 
 int w=0,a=0,s=0,d=0,space=0,n0=0,n1=0,n2=0,n3=0,n4=0,n5=0,n6=0,n7=0,n8=0,n9=0,back_space=0; // user input flag
 
@@ -1762,7 +1762,8 @@ void chapter_0(){
 				printf("\e[2m\e[1mconfirm                \e[0m");
 				printf("\e[%d;%dH",21,12); // set cursor position (y,x)
 				printf("\e[2m\e[1mback    \e[0m");
-				
+				printf("\e[%d;%dH",22,12); // set cursor position (y,x)
+				printf("\e[2m\e[1m     \e[0m");
 				select_choice = 1;
 				subchapter = 2;
 			}else if (select_choice == 3){
