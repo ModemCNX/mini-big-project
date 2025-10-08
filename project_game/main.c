@@ -5,7 +5,7 @@
 #include <math.h>
 
 //variable that NOT gonna change by player ( system variable )
-char version[] = "1.3.3";
+char version[] = "1.3.4";
 
 int w=0,a=0,s=0,d=0,space=0,n0=0,n1=0,n2=0,n3=0,n4=0,n5=0,n6=0,n7=0,n8=0,n9=0,back_space=0; // user input flag
 
@@ -31,7 +31,7 @@ float combat_time = 0;
 int combat_counter = 0;
 float lose_time = 0;  // lose animation
 
-typedef struct {
+typedef struct {   //enemy
 	float life_time;
     float x, y;
     float speed_x,speed_y;
@@ -43,13 +43,13 @@ enemy enemy_container[1000];
 int combat_screen[89][28];     // 0 none(and border) // >1 = enemy count
 int combat_screen_change = 0;  // for update combat screen
 
-int hp = 3;
+int hp = 3;                  // player variable
 int player_x = 0;
 int player_y = 0;
 float i_frame = 0;
 float i_frame_time = 0.9;
 
-float move_time_x = 0;
+float move_time_x = 0;    // for move in combat mode
 float move_time_y = 0;
 float move_time_delay_x = 0.1;
 float move_time_delay_y = 0.15;
@@ -62,12 +62,12 @@ int select_choice = 1;
 float chapter_teleport_time = 0;
 char chapter_code[7] = "";
 
-int knowOphelia = 0;
+int knowOphelia = 0; // game variable
 int garlic = 0;
 int hurt = 0;
 int holywater = 0;
 
-float animation_time = 0;
+float animation_time = 0; // animation in story
 int animation_counter = 0;
 
 
@@ -279,7 +279,7 @@ char cab_man[] = "20550900070290680060290680060290680060550900070550900070550900
 //text data
 
 char text_data[200][10000];
-void make_text()
+void make_text() //make text data
 { // compatible with only ansi escape code that end with 'H' or 'm' only 
 	strcpy (text_data[0],"\e[4;94HNarator");
 	strcpy (text_data[1],"\e[4;94HJack");
@@ -537,7 +537,7 @@ void make_text()
 }
 
 // display function
-void draw(char data[]){
+void draw(char data[]){ // display data on screen
 	char draw_action[100000] = "";
 	char text[100] = "";
 	int draw_x = 0 , draw_y = 0 , draw_start_x = 1 , draw_start_y = 1;
@@ -606,7 +606,7 @@ void clear_text(){  //  clear current_text in screen by print char as ' '
 	text_time = game_time;
 }
 
-void show_text(int text_index){          // call this function only once ****
+void show_text(int text_index){          // show text that will slowly appear
 	if (current_text == -1) {       // no text right now ok to draw
 		current_text = text_index;
 	}else{      // need to delete current text first bruh
@@ -615,7 +615,7 @@ void show_text(int text_index){          // call this function only once ****
 	}
 }
 
-void draw_text(){  // note:ascii   27 = /e(ESC code) 72 = H 109 = m
+void draw_text(){  //update text in every frame
 	if (current_text == -1){
 		return;
 	}
@@ -665,11 +665,11 @@ void draw_text(){  // note:ascii   27 = /e(ESC code) 72 = H 109 = m
 	printf("\e[0m%s\e[0m",draw_action);
 }
 
-void play_sound(char sound_data[]){ 
+void play_sound(char sound_data[]){ //play sound loop
 	PlaySound(sound_data, NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 }
 
-void play_sound2(char sound_data[]) { 
+void play_sound2(char sound_data[]) { //play sound no loop
     PlaySound(sound_data, NULL, SND_FILENAME | SND_ASYNC);
 }
 
@@ -677,7 +677,7 @@ void play_sound2(char sound_data[]) {
 // update function
 
 
-void update_input(){
+void update_input(){ //get user input
 	w = GetAsyncKeyState('W')!=0||GetAsyncKeyState(0x26)!=0?1:0;
 	a = GetAsyncKeyState('A')!=0||GetAsyncKeyState(0x25)!=0?1:0;
 	s = GetAsyncKeyState('S')!=0||GetAsyncKeyState(0x28)!=0?1:0;
@@ -699,7 +699,7 @@ void update_input(){
 
 
 
-void update_game_time(float *game_time){
+void update_game_time(float *game_time){ // update current game time
 	QueryPerformanceCounter(&t2);
 	delta_time = ((t2.QuadPart - t1.QuadPart) / (float)frequency.QuadPart)  - *game_time;
 	*game_time = (t2.QuadPart - t1.QuadPart) / (float)frequency.QuadPart;
@@ -707,7 +707,7 @@ void update_game_time(float *game_time){
 
 // function for check input ( not call every frame, need to call by code )
 
-int check_select_choice(int choice_limit){    // return : if not change return 0 if change return old select_choice number
+int check_select_choice(int choice_limit){    // get player choice     // return : if not change return 0 if change return old select_choice number
 	float select_choice_delay = 0.2;
 	if (w){
 		if(select_choice > 1 && game_time > select_choice_time){
@@ -725,7 +725,7 @@ int check_select_choice(int choice_limit){    // return : if not change return 0
 	return 0;
 }
 
-int check_space(){    // return : 1 if space press    0 if space not press ( or on cooldown )
+int check_space(){   // get player action if press spacebar   // return : 1 if space press    0 if space not press ( or on cooldown )
 	float space_delay = 0.3;
 	if (space){
 		if(game_time > space_time){
@@ -740,14 +740,14 @@ int check_space(){    // return : 1 if space press    0 if space not press ( or 
 	return 0;
 }
 
-void update_game(){
+void update_game(){ // update game
 	update_game_time(&game_time);
 	update_input();
 	draw_text();  // text system
 }
 
 
-void display_var(){              // for debug only
+void display_var(){         // display anything     // for debug only
 	printf("\e[48;2;0;0;0m");// change color of '' to r:g:b value	
 	printf("\e[%d;%dH",1,1); // set cursor position (y,x)
 	printf("[ version %s]",version);
@@ -768,7 +768,7 @@ void display_var(){              // for debug only
 
 // start funtion
 
-void start_setup(){
+void start_setup(){  // setup anything befor game start
 	printf("\e[?25l"); // hide cursor
 	SetConsoleOutputCP(CP_UTF8);      // for print emoji(player character in combat mode)
 	QueryPerformanceFrequency(&frequency); // for update_game_time(){
@@ -780,7 +780,7 @@ void start_setup(){
 
 // combat function
 
-void combat_screen_clear(){  // 89x28
+void combat_screen_clear(){ //clear screen array // 89x28
 	int i,j;
 	for (i=0;i<28;i++){
 		for (j=0;j<89;j++){
@@ -790,7 +790,7 @@ void combat_screen_clear(){  // 89x28
 	}
 }
 
-void take_damage(){
+void take_damage(){ // decrease hp if take damage
 	i_frame = i_frame_time;
 	hp -= 1;
 	if(current_fight == 3)
@@ -803,7 +803,7 @@ void take_damage(){
 	}
 }
 
-void draw_combat_full_screen(){
+void draw_combat_full_screen(){ // draw combat screen
 	char draw_combat_action[200000] = "";
 	char text[1000] = "";
 	char bg_dark_text[] = "\e[48;2;0;0;0m ";
@@ -852,7 +852,7 @@ void draw_combat_full_screen(){
 	printf("%s",draw_combat_action);
 }
 
-void start_fight(int fight_index){
+void start_fight(int fight_index){ // start fight with that fight_index
 	combat_screen_clear();
 	current_fight = fight_index;
 	combat_time = 0;
@@ -875,7 +875,7 @@ void start_fight(int fight_index){
 }
 
 
-void spawn(float life_time,float x,float y,float speed_x,float speed_y,float accel_x,float accel_y,float follow_player_time){
+void spawn(float life_time,float x,float y,float speed_x,float speed_y,float accel_x,float accel_y,float follow_player_time){ // spawn enemy
 	int i;
 	for(i=0;i<1000;i++){
 		if(enemy_container[i].life_time <= 0){
@@ -899,7 +899,7 @@ void spawn(float life_time,float x,float y,float speed_x,float speed_y,float acc
 	}
 }
 
-void update_enemy(){
+void update_enemy(){ // update enemy
 	int i;
 	for(i=0;i<1000;i++){
 		if(enemy_container[i].life_time > 0 && enemy_container[i].life_time - delta_time <= 0){         // die this frame
@@ -945,14 +945,14 @@ void update_enemy(){
 	}
 }
 
-void clear_enemy(){
+void clear_enemy(){ // clear all enemy
     int i;
     for(i=0;i<1000;i++){
         enemy_container[i].life_time = 0;
     }
 }
 
-void lose(){
+void lose(){ // lose battle
     if(lose_time > 0){
         lose_time -= delta_time;
     }else{
@@ -963,14 +963,14 @@ void lose(){
     }
 }
 
-void win(){
+void win(){ // win battle
     clear_enemy();
     last_fight_result = 1;
     current_fight = 0;
     printf("\e[23;94H   ");// clear heart ui
 }
 
-void move(){   
+void move(){ // move in combat
 	int new_x = player_x;
 	int new_y = player_y;
 	
@@ -996,7 +996,7 @@ void move(){
 	player_y = new_y;
 }
 	
-void draw_heart_ui(){
+void draw_heart_ui(){ // draw heart ui on screen
 	printf("\e[48;2;0;0;0m\e[38;2;255;0;0m\e[23;94H");
 	int i;
 	for(i=1;i<=3;i++){
@@ -1009,7 +1009,7 @@ void draw_heart_ui(){
 	printf("\e[0m");
 }
 
-void combat_progress(){ 
+void combat_progress(){ //main function for combat mode
 	combat_time += delta_time;
 	draw_combat_full_screen();
 	draw_heart_ui();
@@ -1658,18 +1658,18 @@ void combat_progress(){
 }
 
 // VN function
-void clear_chapter_data(){
+void clear_chapter_data(){ // clear chapter valuables
 	subchapter = 0;
 	select_choice = 1;
 	select_choice_time = 0;
 }
 
-void change_chapter(int target_chapter){
+void change_chapter(int target_chapter){ // change chapter
 	clear_chapter_data();
 	chapter = target_chapter;
 }
 
-void input_chapter_code(){
+void input_chapter_code(){ // get number of chapter code player type
 	char num_input[1] = " ";
 	if(back_space){
 		num_input[0] = 'e';
@@ -1709,13 +1709,13 @@ void input_chapter_code(){
 		}
 }
 
-void show_chapter_code(){
+void show_chapter_code(){ // printf chapter code 
 	printf("\e[%d;%dH",29,102); // set cursor position (y,x)
 	snprintf(chapter_code, sizeof(chapter_code), "%d%d%d%d", chapter,garlic,knowOphelia,holywater);
 	printf("\e[0mchapter code:%s", chapter_code);
 }
 
-void chapter_0(){
+void chapter_0(){ // function for chapter 0
 	if (subchapter == 0){
 		subchapter = 1;
 		draw(menu);
@@ -1812,7 +1812,7 @@ void chapter_0(){
 }
 
 
-void chapter_1()
+void chapter_1()  // function for chapter 1
 {
 	if (subchapter == 0)
 	{
@@ -1860,7 +1860,7 @@ void chapter_1()
 
 }
 
-void chapter_2()
+void chapter_2() // function for chapter 2
 {
 	if (subchapter == 0)
 	{
@@ -1962,7 +1962,7 @@ void chapter_2()
 	}
 }
 
-void chapter_3()
+void chapter_3() // function for chapter 3
 {
 	if (subchapter == 0)
 	{
@@ -2158,8 +2158,7 @@ void chapter_3()
 	} 
 } 
 
-
-void chapter_4()
+void chapter_4() // function for chapter 4
 {
 	if (subchapter == 0)
 	{
@@ -2368,7 +2367,7 @@ void chapter_4()
 	}
 }
 
-void chapter_5()
+void chapter_5() // function for chapter 5
 {
 	if (subchapter == 0)
 	{
@@ -2678,7 +2677,7 @@ void chapter_5()
 	}
 }
 
-void chapter_6()
+void chapter_6() // function for chapter 6
 {
 	if (subchapter == 0)
 	{
@@ -2863,7 +2862,7 @@ void chapter_6()
 	}
 }
 
-void chapter_7()
+void chapter_7() // function for chapter 7
 {
 	if (subchapter == 0)
 	{
@@ -3061,7 +3060,7 @@ void chapter_7()
 	}
 }
 
-void chapter_8()
+void chapter_8() // function for chapter 8
 {
 	if (subchapter == 0)
 	{
@@ -3184,7 +3183,7 @@ void chapter_8()
 	}
 }
 
-void chapter_9()
+void chapter_9() // function for chapter 9
 {
 	if (subchapter == 0)
 	{
@@ -3516,7 +3515,7 @@ void chapter_9()
 	}
 }
 
-void chapter_10()
+void chapter_10() // function for chapter 10
 {
 	if(subchapter == 0)
 	{
@@ -3943,7 +3942,7 @@ void chapter_10()
 	}
 }
 
-void chapter_11()
+void chapter_11() // function for chapter 11
 {
 	if(subchapter == 0)
 	{
@@ -4062,7 +4061,7 @@ void chapter_11()
 	}
 }
 
-void game_progress(){    // call every tick
+void game_progress(){  // call function for each chapter and fight  // call every tick
 	if (current_fight != 0)
 	{
 		combat_progress();
