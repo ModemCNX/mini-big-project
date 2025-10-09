@@ -5,7 +5,7 @@
 #include <math.h>
 
 //variable that NOT gonna change by player ( system variable )
-char version[] = "1.3.4";
+char version[] = "1.3.5";
 
 int w=0,a=0,s=0,d=0,space=0,n0=0,n1=0,n2=0,n3=0,n4=0,n5=0,n6=0,n7=0,n8=0,n9=0,back_space=0; // user input flag
 
@@ -354,7 +354,7 @@ void make_text() //make text data
 
 	strcpy (text_data[44],"\e[7;111H\e[38;2;255;204;30mIs this\e[8;102HA mission board?");
 	
-	strcpy (text_data[45],"\e[7;94H\e[38;2;114;118;148mYes\e[8;94HPeople in the city\e[9;94HDo assign us work.\e[10;94HMostly\e[11;94HForage for wild products\e[12;94HAnd hunt animals.\e[13;108H\e[38;2;255;204;30mBy the way\e[14;107HWhy is that\e[15;97HMission paper so old?\e[0m\e[16;94H\e[38;2;114;118;148mOh\e[8;94HThat one?\e[17;94HIt is a quest\e[8;94HTo find a missing girl.\e[18;94HDo you want to listen?\e[0m");
+	strcpy (text_data[45],"\e[7;94H\e[38;2;114;118;148mYes\e[8;94HPeople in the city\e[9;94HDo assign us work.\e[10;94HMostly\e[11;94HForage for wild products\e[12;94HAnd hunt animals.\e[13;108H\e[38;2;255;204;30mBy the way\e[14;107HWhy is that\e[15;97HMission paper so old?\e[0m\e[16;94H\e[38;2;114;118;148mOh\e[17;94HThat one?\e[18;94HIt is a quest\e[19;94HTo find a missing girl.\e[20;94HDo you want to listen?\e[0m");
 
 	strcpy (text_data[46],"\e[7;109H\e[38;2;255;204;30mOf course\e[8;104HI want to know\e[9;96HIn case i get the job.\e[0m\e[10;94H\e[38;2;114;118;148mHaha\e[11;94HIs that so\e[12;94HThen I'll give you\e[13;94HA brief overview\e[14;94HOf this quest.\e[15;94HThe missing girl\e[16;94HIs named Ophelia.\e[17;94HShe is the daughter\e[18;94HOf a wealthy man\e[19;94HIn the city.\e[0m");
 	
@@ -464,7 +464,7 @@ void make_text() //make text data
 
 	strcpy (text_data[99],"\e[7;109H\e[38;2;255;204;30mOh my god\e[8;95HThat's a gold necklace."); 
 
-	strcpy(text_data[100],"\e[7;94HDon't randomly touch\e[8;94HOther people's things.");
+	strcpy(text_data[100],"\e[7;94H\e[38;2;254;18;101mDon't randomly touch\e[8;94HOther people's things.");
 
 	strcpy (text_data[101],"\e[7;104H\e[38;2;255;204;30mI just watched\e[8;105HA little bit.\e[9;96HWhat the hell are you?\e[10;108HA vampire?\e[0m\e[11;94H\e[38;2;254;18;101mWhat if I say yes?\e[0m\e[12;100H\e[38;2;255;204;30mThat would make it\e[13;104HMuch more fun.\e[14;111HCome on\e[15;100HI've wanted to try\e[16;101HKilling a vampire\e[17;102HFor a long time.\e[0m\e[18;94H\e[38;2;254;18;101mYou foolish human being\e[19;94HDie!\e[0m"); 
 
@@ -2201,6 +2201,7 @@ void chapter_4() // function for chapter 4
 	} 
 	else if(subchapter == 2)
 	{
+		draw(gui);
 		draw(red_hair_quest_board);
 		printf("\e[4;94H\e[0m\e[38;2;185;80;80mLodern      \e[0m");
 		show_text(40);
@@ -2286,12 +2287,14 @@ void chapter_4() // function for chapter 4
 		play_sound2("Music/Effect/punch");
 		draw(punch_red_hair);
 		sleep(2);
+		printf("\e[4;94H\e[0m\e[38;2;185;80;80mLodern      \e[0m");
 		play_sound(0);
 		play_sound("Music/BGM/village2");
 		draw(gui);
 		draw(red_hair_quest_board);
 		printf("\e[4;94H\e[0m\e[38;2;185;80;80mLodern      \e[0m");
 		show_text(43);
+		printf("\e[4;94H\e[0m\e[38;2;185;80;80mLodern      \e[0m");
 		subchapter = 10;
 		
 	}
@@ -2524,12 +2527,14 @@ void chapter_5() // function for chapter 5
 	}
 	else if(subchapter == 13)
 	{
+		printf("\e[4;94H\e[0m\e[38;2;159;75;0mBear    \e[0m");
 		play_sound(0);
 		play_sound("Music/BGM/Bear");
 		draw(gui);
 		draw(bear_wood_way);
 		printf("\e[4;94H\e[0m\e[38;2;159;75;0mBear    \e[0m");
 		show_text(63);
+		printf("\e[4;94H\e[0m\e[38;2;159;75;0mBear    \e[0m");
 		subchapter = 14;
 	}
 	else if(subchapter == 14)
@@ -2550,6 +2555,8 @@ void chapter_5() // function for chapter 5
 			sleep(2);
 			draw(gui);
 			draw(bear_home);
+			play_sound(0);
+			play_sound("Music/BGM/bear");
 			printf("\e[4;94H\e[0m\e[38;2;159;75;0mBear    \e[0m");
 			show_text(64);
 			subchapter = 15;
@@ -2566,14 +2573,15 @@ void chapter_5() // function for chapter 5
 			draw(bear_donut_sleep_home);
 			printf("\e[4;94H\e[0m\e[38;2;159;75;0mBear    \e[0m");
 			subchapter = 16;
+			play_sound(0);
+			play_sound("Music/BGM/village2");
 		}
 	}
 	else if(subchapter == 16)
 	{
 		if(check_space())
 		{
-			play_sound(0);
-			play_sound("Music/BGM/village2");
+			
 			draw(jim_bear_donut_sleep_home);
 			printf("\e[4;94H\e[0m\e[38;2;255;23;17mJim     \e[0m");
 			show_text(65);
